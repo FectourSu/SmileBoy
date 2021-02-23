@@ -2,7 +2,7 @@
 using System.Security;
 using System.Threading.Tasks;
 
-namespace SmileBoyClient.Core.IContract
+namespace SmileBoyClient.Core.IContract.IService
 {
     public interface IAuthorizationService<TResult>
         where TResult : class, new()

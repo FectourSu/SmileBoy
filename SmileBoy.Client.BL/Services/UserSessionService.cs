@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SmileBoy.Client.BL.IData
+namespace SmileBoy.Client.Core.Services
 {
-    class IProduct
+    class UserSessionService
     {
     }
 }

@@ -1,11 +1,10 @@
-﻿using SmileBoyClient.Core.IContract;
+﻿using SmileBoy.Client.Entity;
+using System;
 
-namespace SmileBoyClient.Core.Models
+namespace SmileBoy.Client.Entities
 {
-    class Product : IModel
+    public class Product : EntityBase<Guid>
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public string Manufacturer { get; set; }

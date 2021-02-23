@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SmileBoyClient.Core.IContract
+﻿namespace SmileBoyClient.Core.IContract
 {
     public interface IModel
     {
