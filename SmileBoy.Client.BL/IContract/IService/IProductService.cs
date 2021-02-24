@@ -16,6 +16,6 @@ namespace SmileBoyClient.Core.IContract.IService
 
         Task<ProductDto> GetByIdAsync(Guid id);
 
-        Task DeleteAsync();
+        Task DeleteAsync(Guid id);
     }
 }

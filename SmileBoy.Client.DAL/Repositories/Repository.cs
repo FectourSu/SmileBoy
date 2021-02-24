@@ -2,11 +2,19 @@
 using SmileBoy.Client.Core.IContract.IData;
 using SmileBoy.Client.Entity;
 using SmileBoyClient.Helpers;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace SmileBoy.Client.DAL.Repositories
 {
+    /// <summary>
+    /// general CRUD implementation for TEntity objects
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    /// <typeparam name="TKey"></typeparam>
     public class Repository<TEntity, TKey> : IRepository<TEntity, TKey>
         where TEntity : EntityBase<TKey>, new()
     {
@@ -20,34 +28,109 @@ namespace SmileBoy.Client.DAL.Repositories
 
             _tableName = Has.NotNullOrEmpty(tablename);
         }
-        public Task DeleteAsync(TKey id)
+
+
+        /// <summary>
+        /// Deletes an entry by the specified id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task DeleteAsync(TKey id)
         {
-            throw new System.NotImplementedException();
+            var collection = Database.GetCollection<TEntity>(_tableName);
+
+            var filter = Builders<TEntity>.Filter.Eq("Id", id);
+
+            await collection.DeleteOneAsync(filter);
         }
 
-        public Task<IEnumerable<TEntity>> FindAsync<TValue>(System.Linq.Expressions.Expression<System.Func<TEntity, TValue>> expression, TValue value)
+        /// <summary>
+        /// Native find wrapper from entity framework
+        /// Searching record
+        /// </summary>
+        /// <param name="expression">An expression that specifies the property that will be searched for</param>
+        /// <param name="value">The value to search for</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<TEntity>> FindAsync<TValue>(Expression<Func<TEntity, TValue>> expression, TValue value)
         {
-            throw new System.NotImplementedException();
+            var memeberExpression = expression.Body as MemberExpression;
+
+            if (memeberExpression == null)
+                throw new InvalidOperationException();
+
+            var collection = Database.GetCollection<TEntity>(_tableName);
+            var filter = Builders<TEntity>.Filter.Eq(memeberExpression.Member.Name, value);
+
+            using (var entities = await collection.FindAsync(filter))
+            {
+                return entities.ToList();
+            }
         }
 
-        public Task<IEnumerable<TEntity>> GetAllAsync(int page, int size)
+        /// <summary>
+        /// Retrieves records from the database broken down by page
+        /// </summary>
+        /// <typeparam name="TModel">The model that forms the entity</typeparam>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<TEntity>> GetAllAsync(int page, int pageSize)
         {
-            throw new System.NotImplementedException();
+            var collection = Database.GetCollection<TEntity>(_tableName);
+
+            using (var entities = await collection.FindAsync(Builders<TEntity>.Filter.Empty))
+            {
+                return entities.ToList()
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize);
+            }
         }
 
-        public Task<TEntity> GetByIdAsync(TKey id)
+        /// <summary>
+        /// Retrieves a record by the specified id
+        /// </summary>
+        /// <returns></returns>
+        public async Task<TEntity> GetByIdAsync(TKey id)
         {
-            throw new System.NotImplementedException();
+            var collection = Database.GetCollection<TEntity>(_tableName);
+
+            var filter = Builders<TEntity>.Filter.Eq("Id", id);
+
+            using(var entities = await collection.FindAsync(filter))
+            {
+                return await entities.FirstOrDefaultAsync();
+            }
         }
 
-        public Task InsertAsync(TEntity model)
+        /// <summary>
+        /// Add an entry
+        /// </summary>
+        /// <returns></returns>
+        public async Task InsertAsync(TEntity entity)
         {
-            throw new System.NotImplementedException();
+            var collection = Database.GetCollection<TEntity>(_tableName);
+            entity.CreatedBy = entity.UpdateBy = DateTime.Now;
+
+            await collection.InsertOneAsync(entity);
         }
 
-        public Task UpdateAsync(TKey id, TEntity model)
+        /// <summary>
+        /// Updates a record in the database,
+        /// if the record cannot be found by the specified id, a new one will be added
+        /// </summary>
+        /// <returns></returns>
+        public async Task UpdateAsync(TKey id, TEntity entity)
         {
-            throw new System.NotImplementedException();
+            var collection = Database.GetCollection<TEntity>(_tableName);
+            var filter = Builders<TEntity>.Filter.Eq("Id", id);
+
+            var foundEntity = await GetByIdAsync(id);
+
+            entity.CreatedBy = foundEntity?.CreatedBy ?? DateTime.Now;
+            entity.UpdateBy = DateTime.Now;
+
+            await collection.ReplaceOneAsync(filter, entity,
+                new ReplaceOptions { IsUpsert = true });
         }
     }
 }
