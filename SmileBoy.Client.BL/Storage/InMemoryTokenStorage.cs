@@ -5,7 +5,7 @@ using System.Collections.Concurrent;
 
 namespace SmileBoyClient.Core
 {
-    class InMemoryTokenStorage : ITokenStorage
+    public class InMemoryTokenStorage : ITokenStorage
     {
         public event EventHandler<TokenEventArgs> Changed;
         public event EventHandler Cleared;

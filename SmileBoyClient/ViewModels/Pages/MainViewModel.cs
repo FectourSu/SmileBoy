@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace SmileBoyClient.ViewModels
 {
-    class MainPageViewModel : ViewModelBase
+    class MainViewModel : ViewModelBase
     {
         private readonly NavigationPageService _navigationPage;
 
@@ -41,7 +41,7 @@ namespace SmileBoyClient.ViewModels
 
         public ICommand CloseCommand { get; }
 
-        public MainPageViewModel(NavigationPageService pageService)
+        public MainViewModel(NavigationPageService pageService)
         {
             _pages = PageHelper.Tabs;
 

@@ -11,10 +11,7 @@
 
         public bool IsSuccess => string.IsNullOrEmpty(ErrorMessage);
 
-        public AuthorizationResult() : this(null, empty)
-        {
-
-        }
+        public AuthorizationResult() : this(null, empty) { }
 
         public AuthorizationResult(T response, string errorMessage = empty)
         {

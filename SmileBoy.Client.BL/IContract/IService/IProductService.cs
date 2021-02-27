@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmileBoyClient.Core.IContract.IService
 {
-    interface IProductService
+    public interface IProductService
     {
         Task<IEnumerable<ProductDto>> GetAllAsync(int page, int pageSize);
 

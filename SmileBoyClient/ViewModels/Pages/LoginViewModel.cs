@@ -1,4 +1,5 @@
 ﻿using SmileBoyClient.Command;
+using SmileBoyClient.Core.IContract.IProviders;
 using SmileBoyClient.Helpers;
 using SmileBoyClient.Navigation;
 using System.Net;
@@ -8,19 +9,22 @@ using System.Windows.Input;
 
 namespace SmileBoyClient.ViewModels
 {
-    class LoginPageViewModel : ViewModelBase
+    class LoginViewModel : ViewModelBase
     {
-        private string _error;
-
-        private string _email;
 
         private readonly NavigationPageService _navigationPage;
+
+        private readonly IAuthoriazationProvider _authoriazationProvider;
+
+        private string _error;
 
         public string Error
         {
             get { return _error; }
             set { Set(ref _error, value); }
         }
+
+        private string _email;
 
         public string Email
         {
@@ -32,8 +36,9 @@ namespace SmileBoyClient.ViewModels
 
         public ICommand CloseCommand { get; }
 
-        public LoginPageViewModel(NavigationPageService navigationPage)
+        public LoginViewModel(IAuthoriazationProvider authoriazationProvider, NavigationPageService navigationPage)
         {
+            _authoriazationProvider = authoriazationProvider;
             _navigationPage = navigationPage;
 
             LoginCommand = new DelegateCommand(Login, pb =>
@@ -42,23 +47,21 @@ namespace SmileBoyClient.ViewModels
             CloseCommand = new DelegateCommand(_ => Application.Current.Shutdown());
         }
 
-        private void Login(object obj)
+        private async void Login(object obj)
         {
+            Error = string.Empty;
+
             var password = (obj as PasswordBox).SecurePassword;
 
-            var credential = new NetworkCredential(Email, password);
+            var state = await _authoriazationProvider.Login(Email, password);
 
-            var state = "1488";
-
-            if (credential.Password != state)
+            if (!state.IsAuthentication)
             {
-                Error = "Incorrect password";
+                Error = state.ErrorMessage;
                 return;
             }
 
             _navigationPage.NavigateTo(PageHelper.MainPage);
-
         }
-
     }
 }

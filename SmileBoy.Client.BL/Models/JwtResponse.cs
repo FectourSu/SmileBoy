@@ -1,19 +1,20 @@
-﻿using System.Text.Json.Serialization;
+﻿using SmileBoy.Client.Core.Helpers;
+using System.Text.Json.Serialization;
 
 namespace SmileBoyClient.Core.Models
 {
     /// <summary>
     /// Token entities
     /// </summary>
-    class JwtResponse
+    public class JwtResponse
     {
-        [JsonPropertyName("access_token")]
+        [JsonPropertyName(Token.Access)]
         public string AccessToken { get; set; }
 
-        [JsonPropertyName("refresh_token")]
+        [JsonPropertyName(Token.Refresh)]
         public string RefreshToken { get; set; }
 
-        [JsonPropertyName("token_type")]
+        [JsonPropertyName(Token.Type)]
         public string IssusedTokenType { get; set; }
     }
 }

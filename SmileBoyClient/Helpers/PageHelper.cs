@@ -16,7 +16,6 @@ namespace SmileBoyClient.Helpers
             [nameof(SettingTab)] = new SettingTab(),
             [nameof(ProductTab)] = new ProductTab(),
             [nameof(OrderTab)] = new OrderTab(),
-            [nameof(OrderProductTab)] = new OrderProductTab(),
             [nameof(CustomerTab)] = new CustomerTab()
         };
     }

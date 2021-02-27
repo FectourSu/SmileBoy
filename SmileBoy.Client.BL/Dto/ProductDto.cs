@@ -2,7 +2,7 @@
 
 namespace SmileBoyClient.Core.Entites
 {
-    class ProductDto : IModel
+    public class ProductDto : IModel
     {
         public int Id { get; set; }
 

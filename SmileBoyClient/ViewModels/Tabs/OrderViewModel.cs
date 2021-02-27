@@ -1,6 +1,6 @@
 ﻿namespace SmileBoyClient.ViewModels
 {
-    class OrderPageViewModel : ViewModelBase
+    class OrderViewModel : ViewModelBase
     {
     }
 }

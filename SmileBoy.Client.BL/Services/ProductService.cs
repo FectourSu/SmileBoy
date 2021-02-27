@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SmileBoy.Client.BL.Services
 {
-    class ProductService : IProductService
+    public class ProductService : IProductService
     {
         /// <summary>
         /// Buisness logic accessing data via mapping

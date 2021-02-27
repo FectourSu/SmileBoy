@@ -5,11 +5,11 @@ namespace SmileBoyClient.Core.IContract.IProviders
 {
     public interface IAuthoriazationProvider
     {
-        AuthentificationState AuthentificationState { get; }
+        AuthenticationState AuthenticationState { get; }
 
-        Task<AuthentificationState> Login(string email, SecureString password);
+        Task<AuthenticationState> Login(string email, SecureString password);
 
-        Task<AuthentificationState> ExtendSession();
+        Task<AuthenticationState> ExtendSession();
 
         Task Logout();
     }

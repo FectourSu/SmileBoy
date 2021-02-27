@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SmileBoy.Client.Core.Services
 {
-    class UserSessionService : ISessionService<UserSession>
+    public class UserSessionService : ISessionService<UserSession>
     {
         public async Task SaveAsync(string sessionPath, UserSession session)
         {

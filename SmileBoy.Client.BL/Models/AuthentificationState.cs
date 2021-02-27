@@ -3,15 +3,15 @@ using System.Security.Claims;
 
 namespace SmileBoyClient.Core
 {
-    public class AuthentificationState
+    public class AuthenticationState
     {
         public ClaimsPrincipal User { get; private set; }
 
         public string ErrorMessage { get; set; }
 
-        public bool IsAuthentification => User.Identity.IsAuthenticated;
+        public bool IsAuthentication => User.Identity.IsAuthenticated;
 
-        public AuthentificationState(ClaimsPrincipal principal)
+        public AuthenticationState(ClaimsPrincipal principal)
         {
             User = principal;
         }

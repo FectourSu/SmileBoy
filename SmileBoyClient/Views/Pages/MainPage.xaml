@@ -262,35 +262,7 @@
                                    Style="{StaticResource Font_style}"/>
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem HorizontalAlignment="Left" Cursor="Hand"
-                                      Height="60"
-                                      Name="OrderProductTab"
-                                      >
-                            <StackPanel Orientation="Horizontal"
-                                    Width="230"
-                                    >
-                                <Image
-                                       Width="20"
-                                       Height="20"
-                                       Margin="14,0,0,0">
-                                    <Image.Style>
-                                        <Style>
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ListBoxItem}}" Value="true">
-                                                    <Setter Property="Image.Source" Value="/Assets/data-storage.png"/>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=ListBoxItem}}" Value="false">
-                                                    <Setter Property="Image.Source" Value="/Assets/data-storage (1).png"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Image.Style>
-                                </Image>
-                                <TextBlock Text="Order product"
-                                    Margin="38, 0, 0, 0"
-                                   Style="{StaticResource Font_style}"/>
-                            </StackPanel>
-                        </ListViewItem>
+                        
                         <ListViewItem HorizontalAlignment="Left" Cursor="Hand"
                                       Height="60"
                                       Name="CustomerTab"

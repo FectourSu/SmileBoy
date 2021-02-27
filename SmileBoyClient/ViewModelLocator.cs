@@ -1,4 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SmileBoy.Client.BL.Services;
+using SmileBoy.Client.Core.Providers;
+using SmileBoy.Client.Core.Services;
+using SmileBoyClient.Core;
+using SmileBoyClient.Core.IContract;
+using SmileBoyClient.Core.IContract.IProviders;
+using SmileBoyClient.Core.IContract.IService;
+using SmileBoyClient.Core.Models;
 using SmileBoyClient.Navigation;
 using SmileBoyClient.ViewModels;
 using System;
@@ -22,47 +30,58 @@ namespace SmileBoyClient
 
         public static void ConfigureService(IServiceCollection services)
         {
-            services.AddTransient<MainPageViewModel>();
-            services.AddScoped<LoginPageViewModel>();
+            //Pages
+            services.AddTransient<MainViewModel>();
+            services.AddScoped<LoginViewModel>();
 
-            services.AddTransient<HomePageViewModel>();
-            services.AddTransient<OptionPageViewModel>();
+            //Tabs
+            services.AddTransient<HomeViewModel>();
+            services.AddTransient<OptionViewModel>();
             services.AddTransient<ProductViewModel>();
-            services.AddTransient<OrderPageViewModel>();
-            services.AddTransient<OrderProductPageViewModel>();
-            services.AddTransient<CustomerPageViewModel>();
+            services.AddTransient<OrderViewModel>();
+            services.AddTransient<CustomerViewModel>();
 
+            //Main window
             services.AddSingleton<MainWindowViewModel>();
 
+            //Authorization
+            services.AddScoped(typeof(IAuthorizationService<>), typeof(AuthorizationService<>));
+            services.AddScoped<ISessionService<UserSession>, UserSessionService>();
+            services.AddScoped<IAuthoriazationProvider, AuthorizationProvider>();
+
+            //Infrastructure
             services.AddSingleton<NavigationPageService>();
+            services.AddScoped<HttpClient>();
+            services.AddSingleton<ITokenStorage, InMemoryTokenStorage>()
+                .AddTransient<IReaderTokenStorage>(p => p.GetService<ITokenStorage>());
+            services.AddScoped<IProductService, ProductService>();
+
+            //services.AutoMapper();
+
         }
 
         public MainWindowViewModel MainWindow =>
             _provider.GetRequiredService<MainWindowViewModel>();
 
-        public MainPageViewModel MainPage =>
-            _provider.GetRequiredService<MainPageViewModel>();
+        public MainViewModel MainPage =>
+            _provider.GetRequiredService<MainViewModel>();
 
-        public LoginPageViewModel LoginPage =>
-            _provider.GetRequiredService<LoginPageViewModel>();
+        public LoginViewModel LoginPage =>
+            _provider.GetRequiredService<LoginViewModel>();
 
         public ProductViewModel ProductTab =>
             _provider.GetRequiredService<ProductViewModel>();
 
-        public OrderPageViewModel OrderTab =>
-            _provider.GetRequiredService<OrderPageViewModel>();
+        public OrderViewModel OrderTab =>
+            _provider.GetRequiredService<OrderViewModel>();
+        public CustomerViewModel CustomerTab =>
+            _provider.GetRequiredService<CustomerViewModel>();
 
-        public OrderProductPageViewModel OrderProductTab =>
-            _provider.GetRequiredService<OrderProductPageViewModel>();
+        public OptionViewModel SettingTab =>
+            _provider.GetRequiredService<OptionViewModel>();
 
-        public CustomerPageViewModel CustomerTab =>
-            _provider.GetRequiredService<CustomerPageViewModel>();
-
-        public OptionPageViewModel SettingTab =>
-            _provider.GetRequiredService<OptionPageViewModel>();
-
-        public HomePageViewModel HomeTab =>
-            _provider.GetRequiredService<HomePageViewModel>();
+        public HomeViewModel HomeTab =>
+            _provider.GetRequiredService<HomeViewModel>();
 
 
     }

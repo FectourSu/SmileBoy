@@ -11,7 +11,7 @@ using System.Text.Json;
 
 namespace SmileBoy.Client.Core.Services
 {
-    class AuthorizationService<TResponse> : IAuthorizationService<TResponse>
+    public class AuthorizationService<TResponse> : IAuthorizationService<TResponse>
         where TResponse : class, new()
     {
         private readonly HttpClient _httpClient;
@@ -54,6 +54,8 @@ namespace SmileBoy.Client.Core.Services
                 result.ErrorMessage = string.IsNullOrEmpty(response.ErrorDescription) ?
                     "No response from the server" :
                     response.ErrorDescription;
+
+                return result;
             }
 
             result.Response = await Deserialize(response.HttpResponse.Content);
