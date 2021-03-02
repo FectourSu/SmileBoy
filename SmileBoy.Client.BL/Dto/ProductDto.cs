@@ -1,10 +1,11 @@
 ﻿using SmileBoyClient.Core.IContract;
+using System;
 
 namespace SmileBoyClient.Core.Entites
 {
     public class ProductDto : IModel
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
 

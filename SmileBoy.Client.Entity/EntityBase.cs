@@ -6,7 +6,7 @@ namespace SmileBoy.Client.Entity
     public class EntityBase<TKey> : IEntity<TKey>
     {
         [BsonId]
-        public TKey id { get; set; }
+        public TKey Id { get; set; }
 
         public DateTime CreatedBy { get; set; }
 

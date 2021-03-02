@@ -1,7 +1,9 @@
-﻿namespace SmileBoyClient.Core.IContract
+﻿using System;
+
+namespace SmileBoyClient.Core.IContract
 {
     public interface IModel
     {
-        int Id { get; set; }
+        Guid Id { get; set; }
     }
 }

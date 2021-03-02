@@ -2,6 +2,6 @@
 {
     public interface IEntity<out TKey>
     {
-        TKey id { get; }
+        TKey Id { get; }
     }
 }
