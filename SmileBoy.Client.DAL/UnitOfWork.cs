@@ -19,6 +19,6 @@ namespace SmileBoy.Client.DAL
 
         private IRepository<Product, Guid> _products;
 
-        public IRepository<Product, Guid> Products => _products ?? new ProductRepository(_database);
+        public IRepository<Product, Guid> Products => _products ??= new ProductRepository(_database);
     }
 }

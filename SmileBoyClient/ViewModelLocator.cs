@@ -20,7 +20,7 @@ namespace SmileBoyClient
 
         public static void Initialize()
         {
-            var services = new ServiceCollection();
+            ServiceCollection services = new();
 
             ConfigureService(services);
 
