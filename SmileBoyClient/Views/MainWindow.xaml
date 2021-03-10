@@ -5,7 +5,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Icon="https://psv4.userapi.com/c536132/u155561278/docs/d46/c1922d83c6bf/Resurs_2.png?extra=uRrHl3-9cnH7HFrFJoEQZEwy5T7SCiCkLM2ZZHX-ePUvR_G48smRtYwjTiEvCduzI_P8_Rszeh5ftmwA_snY8SZYpIKgs_qiyceMDeLZjepSkKyh8zNAbpwn5BZ42teIaThwpWXjPjJBWHqJJFWiXX91L1A2"
+        Icon="https://lh3.googleusercontent.com/pw/ACtC-3eAt5FymLvgA2rkopOHIjtNNJPn39X-uYDXACqyWwSuh4lmipBDSEtfGNSIkwKyp5qlrsgai1ZoXyezgSJ_Eq64qqYeH-dlmwbiIix1BaPey9t9s3ZPBrJBGYkxlqiOMSMpCHSebM-TIxUA_thraDLV=w319-h331-no?authuser=0"
         Title="MainWindow" Height="600" Width="1080" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="Transparent"
         ResizeMode="NoResize" AllowsTransparency="True"
         DataContext="{Binding MainWindow, Source={StaticResource ViewModelLocator}}">
