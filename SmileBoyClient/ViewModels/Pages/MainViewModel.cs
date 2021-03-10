@@ -1,4 +1,5 @@
 ﻿using SmileBoyClient.Command;
+using SmileBoyClient.Core.IContract.IProviders;
 using SmileBoyClient.Helpers;
 using SmileBoyClient.Navigation;
 using SmileBoyClient.Views.Tabs;
@@ -14,7 +15,7 @@ namespace SmileBoyClient.ViewModels
         private readonly NavigationPageService _navigationPage;
 
         private readonly IDictionary<string, Page> _pages;
-
+        private readonly IAuthoriazationProvider _authorizationProvider;
         private FrameworkElement _selectedElement;
 
         public FrameworkElement SelectedElement
@@ -41,8 +42,9 @@ namespace SmileBoyClient.ViewModels
 
         public ICommand CloseCommand { get; }
 
-        public MainViewModel(NavigationPageService pageService)
+        public MainViewModel(IAuthoriazationProvider authorizationProvider,NavigationPageService pageService)
         {
+            _authorizationProvider = authorizationProvider;
             _pages = PageHelper.Tabs;
 
             _navigationPage = pageService;
@@ -54,6 +56,7 @@ namespace SmileBoyClient.ViewModels
 
         private void Logout(object obj)
         {
+            _authorizationProvider.Logout();
             _navigationPage.NavigateTo(PageHelper.LoginPage);
         }
     }

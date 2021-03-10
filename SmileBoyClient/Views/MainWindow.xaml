@@ -2,14 +2,14 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
+        Icon="https://psv4.userapi.com/c536132/u155561278/docs/d46/c1922d83c6bf/Resurs_2.png?extra=uRrHl3-9cnH7HFrFJoEQZEwy5T7SCiCkLM2ZZHX-ePUvR_G48smRtYwjTiEvCduzI_P8_Rszeh5ftmwA_snY8SZYpIKgs_qiyceMDeLZjepSkKyh8zNAbpwn5BZ42teIaThwpWXjPjJBWHqJJFWiXX91L1A2"
         Title="MainWindow" Height="600" Width="1080" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="Transparent"
         ResizeMode="NoResize" AllowsTransparency="True"
         DataContext="{Binding MainWindow, Source={StaticResource ViewModelLocator}}">
     <Grid>
-       
         <materialDesign:DialogHost Identifier="RootDialog">
             <materialDesign:DialogHost.DialogContent>
                 <StackPanel></StackPanel>

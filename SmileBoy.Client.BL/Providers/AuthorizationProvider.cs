@@ -25,7 +25,7 @@ namespace SmileBoy.Client.Core.Providers
         public AuthenticationState Anonymous => new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
 
         private AuthenticationState _authenticationState;
-        public AuthenticationState AuthenticationState => _authenticationState ?? GetAuthentificationState();
+        public AuthenticationState AuthenticationState => _authenticationState ??= GetAuthentificationState();
 
         public AuthorizationProvider(IAuthorizationService<JwtResponse> authorizationService, ISessionService<UserSession> sessionService,
             ITokenStorage tokenStorage)
@@ -35,13 +35,12 @@ namespace SmileBoy.Client.Core.Providers
             _tokenStorage = tokenStorage;
         }
 
-        private AuthenticationState GetAuthentificationState()
+        private  AuthenticationState GetAuthentificationState()
         {
             if (!_sessionService.TryRecover(_sessionPath, out UserSession session))
                 return Anonymous;
 
-            return AuthenticationStateChangedAsync(session.AccessToken, session.RefreshToken, false)
-                .Result;
+            return AuthenticationStateChangedAsync(session.AccessToken, session.RefreshToken, false).Result;
         }
 
         /// <summary>

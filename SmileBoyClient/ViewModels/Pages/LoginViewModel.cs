@@ -14,7 +14,7 @@ namespace SmileBoyClient.ViewModels
 
         private readonly NavigationPageService _navigationPage;
 
-        private readonly IAuthoriazationProvider _authoriazationProvider;
+        private readonly IAuthoriazationProvider _authorizationProvider;
 
         private string _error;
 
@@ -38,7 +38,7 @@ namespace SmileBoyClient.ViewModels
 
         public LoginViewModel(IAuthoriazationProvider authoriazationProvider, NavigationPageService navigationPage)
         {
-            _authoriazationProvider = authoriazationProvider;
+            _authorizationProvider = authoriazationProvider;
             _navigationPage = navigationPage;
 
             LoginCommand = new DelegateCommand(Login, pb =>
@@ -53,7 +53,7 @@ namespace SmileBoyClient.ViewModels
 
             var password = (obj as PasswordBox).SecurePassword;
 
-            var state = await _authoriazationProvider.Login(Email, password);
+            var state = await _authorizationProvider.Login(Email, password);
 
             if (!state.IsAuthentication)
             {
