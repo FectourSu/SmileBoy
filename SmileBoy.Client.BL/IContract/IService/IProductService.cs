@@ -6,16 +6,8 @@ using System.Threading.Tasks;
 
 namespace SmileBoyClient.Core.IContract.IService
 {
-    public interface IProductService
+    public interface IProductService : ICrudService<ProductDto, Guid>
     {
-        Task<IEnumerable<ProductDto>> GetAllAsync(int page, int pageSize);
-
-        Task UpdateAsync(Guid id, Product model);
-
-        Task InsertAsync(Product model);
-
-        Task<ProductDto> GetByIdAsync(Guid id);
-
-        Task DeleteAsync(Guid id);
+        Task<long> CountAsync();
     }
 }

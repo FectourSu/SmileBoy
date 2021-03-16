@@ -96,7 +96,7 @@
 
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60"></RowDefinition>
+                        <RowDefinition Height="70"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Frame
@@ -109,22 +109,37 @@
                             <ColumnDefinition Width="15"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="15"/>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition MinHeight="5"/>
+                            <RowDefinition MinHeight="45" />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
-                        <Button
-                    Command="{Binding CloseCommand}"
-                    HorizontalAlignment="Right"
-                    Width="30"
-                    Height="30"
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    Foreground="Black"
-                    Style="{StaticResource MaterialDesignIconButton}">
+                            <Button
+                                Margin="0 -10 0 0"
+                            Command="{Binding CloseCommand}"
+                            HorizontalAlignment="Right"
+                            Width="30"
+                            Height="30"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            Foreground="Black"
+                            Style="{StaticResource MaterialDesignIconButton}">
                             <materialDesign:PackIcon Kind="Close"
                                              Width="15"/>
                         </Button>
+                        
+                        <materialDesign:Chip 
+                            HorizontalAlignment="Left"
+                                             Grid.Row="1"
+                                             Grid.Column="0"
+                                             Margin="25 10 0 0"
+                                             IconBackground="#2d2d2d"
+                                             Background="#F5F3FB"
+                                             FontFamily="{StaticResource RobotoMedium}"
+                                             FontSize="14"
+                                             Content="{Binding UserName, FallbackValue=Admin}"
+                                             Icon="{Binding Icon, FallbackValue=A}" 
+                                             >
+                        </materialDesign:Chip>
                     </Grid>
                 </Grid>
             </Border>

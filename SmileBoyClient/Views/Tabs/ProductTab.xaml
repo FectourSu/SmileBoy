@@ -11,8 +11,163 @@
       DataContext="{Binding ProductTab, Source={StaticResource ViewModelLocator}}">
 
     <Grid>
-        <TextBlock Text="Product"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+        <Border Background="#F5F3FB" Margin="60"
+                >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition MinHeight="300"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Text="PRODUCT"
+                           FontSize="18"
+                           FontFamily="{StaticResource MontserratBold}"
+                           Margin="25,35,0,10"
+                           Foreground="#525252"
+                           HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0 5 0 0"
+                            HorizontalAlignment="Right" Grid.Column="1">
+
+                    <Button Command="{Binding DeleteManyCommand}"
+                            Style="{DynamicResource MaterialDesignToolButton}"
+                            Margin="0 0 5 0">
+                        <materialDesign:PackIcon Kind="AccountMultipleRemove" />
+                    </Button>
+
+                    <Button Command="{Binding AddCommand}"
+                            Style="{DynamicResource MaterialDesignToolButton}"
+                            Margin="0 0 5 0">
+                        <materialDesign:PackIcon Kind="AccountPlus"/>
+                    </Button>
+
+                    <Button Style="{DynamicResource MaterialDesignToolButton}"
+                            Command="{Binding RefreshCommand}">
+                        <materialDesign:PackIcon Kind="Refresh"/>
+                    </Button>
+
+                    <materialDesign:ColorZone Background="White"
+                                              VerticalAlignment="Center"
+                                              BorderThickness="1"
+                                              BorderBrush="#C4C4C4"
+                                              CornerRadius="5"
+                                              Padding="8 0"
+                                              Margin="16 0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button Style="{DynamicResource MaterialDesignToolButton}"
+                                    Command="{Binding SearchCommand}">
+                                <materialDesign:PackIcon Kind="Magnify"
+                                                         Opacity=".56" />
+                            </Button>
+                            <TextBox Grid.Column="1"
+                                     Text="{Binding Filter}"
+                                     Margin="8 0 0 0"
+                                     materialDesign:HintAssist.Hint="Search"
+                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                     BorderThickness="0"
+                                     MinWidth="200"
+                                     VerticalAlignment="Center" />
+                        </Grid>
+                    </materialDesign:ColorZone>
+                </StackPanel>
+
+                <ListView 
+                    Grid.Row="1"
+                           
+                          x:Name="lvProducts"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ItemsSource="{Binding ListItems, Mode=TwoWay}"
+                          Grid.ColumnSpan="2"
+                          >
+                    <ListView.View>
+                        <GridView >
+
+                            <GridViewColumn Width="80">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding Check, UpdateSourceTrigger=PropertyChanged}"
+                                                  Background="#7D9AFF"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumnHeader Padding="7">
+                                    <CheckBox Command="{Binding CheckAllCommand}"
+                                              IsChecked="{Binding IsCheckAll, UpdateSourceTrigger=PropertyChanged}"
+                                              Background="#7D9AFF"/>
+                                </GridViewColumnHeader>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="200">
+                                <GridViewColumnHeader VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False">
+                                    NAME
+                                </GridViewColumnHeader>
+                            </GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Model.Position}"
+                                            Width="200">
+                                <GridViewColumnHeader VerticalAlignment="Center" HorizontalAlignment="Left"  IsHitTestVisible="False">
+                                    POSITION
+                                </GridViewColumnHeader>
+                            </GridViewColumn>
+                            <GridViewColumn Width="200"
+                                            DisplayMemberBinding="{Binding Model.Phone}">
+                                <GridViewColumnHeader VerticalAlignment="Center" HorizontalAlignment="Left"   IsHitTestVisible="False">
+                                    NUMBER
+                                </GridViewColumnHeader>
+                            </GridViewColumn>
+                            <GridViewColumn Width="200"
+                                            DisplayMemberBinding="{Binding Model.Email}">
+                                <GridViewColumnHeader VerticalAlignment="Center" HorizontalAlignment="Left"  IsHitTestVisible="False">
+                                    EMAIL
+                                </GridViewColumnHeader>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="35">
+                                <GridViewColumnHeader IsHitTestVisible="False">
+                                </GridViewColumnHeader>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" 
+                                                                 StaysOpen="False">
+                                            <materialDesign:PopupBox.ToggleContent>
+                                                <materialDesign:PackIcon Kind="DotsHorizontal" />
+                                            </materialDesign:PopupBox.ToggleContent>
+                                            <StackPanel Width="150">
+                                                <Button FontWeight="Regular"
+                                                        Command="{Binding DataContext.UpdateCommand, 
+                                                        ElementName=lvEmployees}"
+                                                        CommandParameter="{Binding Model.Id}">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="Edit"/>
+                                                    </StackPanel>
+                                                </Button>
+                                                <Button FontWeight="Regular"
+                                                        Command="{Binding DataContext.DeleteCommand, ElementName=lvEmployees}"
+                                                        CommandParameter="{Binding Model.Id}">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="Delete"/>
+                                                    </StackPanel>
+                                                </Button>
+                                            </StackPanel>
+                                        </materialDesign:PopupBox>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <StackPanel Grid.Row="2" Margin="25,0,25,0"
+                            Orientation="Horizontal" Grid.ColumnSpan="2">
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

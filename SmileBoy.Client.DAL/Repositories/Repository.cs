@@ -15,18 +15,27 @@ namespace SmileBoy.Client.DAL.Repositories
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TKey"></typeparam>
-    public class Repository<TEntity, TKey> : IRepository<TEntity, TKey>
+    public abstract class Repository<TEntity, TKey> : IRepository<TEntity, TKey>
         where TEntity : EntityBase<TKey>, new()
     {
+
+        protected readonly IMongoCollection<TEntity> _collection;
+
         private readonly string _tableName;
 
         protected readonly IMongoDatabase Database;
 
-        public Repository(IMongoDatabase database, string tablename)
+        public Repository(IMongoDatabase database, string tablename, bool searchable = true)
         {
-            Database = Has.NotNull(database);
+            _collection = Has.NotNull(database).GetCollection<TEntity>(tablename);
 
-            _tableName = Has.NotNullOrEmpty(tablename);
+            if (searchable)
+                CreateIndex();
+        }
+
+        private void CreateIndex()
+        {
+            throw new NotImplementedException();
         }
 
 
@@ -35,7 +44,7 @@ namespace SmileBoy.Client.DAL.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task DeleteAsync(TKey id)
+        public virtual async Task DeleteAsync(TKey id)
         {
             var collection = Database.GetCollection<TEntity>(_tableName);
 
@@ -45,52 +54,27 @@ namespace SmileBoy.Client.DAL.Repositories
         }
 
         /// <summary>
-        /// Native find wrapper from entity framework
-        /// Searching record
+        /// Gets a record in the data database divided by pages
         /// </summary>
-        /// <param name="expression">An expression that specifies the property that will be searched for</param>
-        /// <param name="value">The value to search for</param>
+        /// <typeparam name="TModel">The model that the initial entity will be converted to</typeparam>
+        /// <param name="page">Page number</param>
+        /// <param name="pageSize">Number of entries per page</param>
         /// <returns></returns>
-        public async Task<IEnumerable<TEntity>> FindAsync<TValue>(Expression<Func<TEntity, TValue>> expression, TValue value)
+        public virtual IQueryable<TEntity> GetAll() => _collection.AsQueryable();
+
+        public virtual async Task<IEnumerable<TEntity>> SearchAsync(string search)
         {
-            var memeberExpression = expression.Body as MemberExpression;
+            var filter = Builders<TEntity>.Filter.Text(search);
 
-            if (memeberExpression == null)
-                throw new InvalidOperationException();
-
-            var collection = Database.GetCollection<TEntity>(_tableName);
-            var filter = Builders<TEntity>.Filter.Eq(memeberExpression.Member.Name, value);
-
-            using (var entities = await collection.FindAsync(filter))
-            {
-                return entities.ToList();
-            }
-        }
-
-        /// <summary>
-        /// Retrieves records from the database broken down by page
-        /// </summary>
-        /// <typeparam name="TModel">The model that forms the entity</typeparam>
-        /// <param name="page"></param>
-        /// <param name="pageSize"></param>
-        /// <returns></returns>
-        public async Task<IEnumerable<TEntity>> GetAllAsync(int page, int pageSize)
-        {
-            var collection = Database.GetCollection<TEntity>(_tableName);
-
-            using (var entities = await collection.FindAsync(Builders<TEntity>.Filter.Empty))
-            {
-                return entities.ToList()
-                    .Skip((page - 1) * pageSize)
-                    .Take(pageSize);
-            }
+            return (await _collection.FindAsync(filter))
+                .ToList();
         }
 
         /// <summary>
         /// Retrieves a record by the specified id
         /// </summary>
         /// <returns></returns>
-        public async Task<TEntity> GetByIdAsync(TKey id)
+        public virtual async Task<TEntity> GetByIdAsync(TKey id)
         {
             var collection = Database.GetCollection<TEntity>(_tableName);
 
@@ -106,7 +90,7 @@ namespace SmileBoy.Client.DAL.Repositories
         /// Add an entry
         /// </summary>
         /// <returns></returns>
-        public async Task InsertAsync(TEntity entity)
+        public virtual async Task InsertAsync(TEntity entity)
         {
             var collection = Database.GetCollection<TEntity>(_tableName);
             entity.CreatedBy = entity.UpdateBy = DateTime.Now;
@@ -119,7 +103,7 @@ namespace SmileBoy.Client.DAL.Repositories
         /// if the record cannot be found by the specified id, a new one will be added
         /// </summary>
         /// <returns></returns>
-        public async Task UpdateAsync(TKey id, TEntity entity)
+        public virtual async Task UpdateAsync(TKey id, TEntity entity)
         {
             var collection = Database.GetCollection<TEntity>(_tableName);
             var filter = Builders<TEntity>.Filter.Eq("Id", id);
@@ -131,6 +115,11 @@ namespace SmileBoy.Client.DAL.Repositories
 
             await collection.ReplaceOneAsync(filter, entity,
                 new ReplaceOptions { IsUpsert = true });
+        }
+
+        public Task<long> CountAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

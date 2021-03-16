@@ -1,7 +1,6 @@
 ﻿using SmileBoy.Client.Entity;
-using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SmileBoy.Client.Core.IContract.IData
@@ -11,7 +10,7 @@ namespace SmileBoy.Client.Core.IContract.IData
     {
         Task DeleteAsync(TKey id);
 
-        Task<IEnumerable<TEntity>> GetAllAsync(int page, int size);
+        IQueryable<TEntity> GetAll();
 
         Task<TEntity> GetByIdAsync(TKey id);
 
@@ -19,6 +18,8 @@ namespace SmileBoy.Client.Core.IContract.IData
 
         Task UpdateAsync(TKey id, TEntity model);
 
-        Task<IEnumerable<TEntity>> FindAsync<TValue>(Expression<Func<TEntity, TValue>> expression, TValue value);
+        Task<IEnumerable<TEntity>> SearchAsync(string search);
+
+        Task<long> CountAsync();
     }
 }
