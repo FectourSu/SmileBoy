@@ -24,6 +24,7 @@
     <Resource Include="Fonts\Roboto-Medium.ttf" />
     <Resource Include="Fonts\Roboto-Regular.ttf" />
     <Resource Include="Fonts\Roboto-Thin.ttf" />
+    <Resource Include="Fonts\Roboto-Light.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\grid %281%29.png" />

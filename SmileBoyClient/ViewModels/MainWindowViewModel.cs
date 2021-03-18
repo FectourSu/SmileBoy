@@ -22,7 +22,7 @@ namespace SmileBoyClient.ViewModels
             get { return _currentPage; }
             set { Set(ref _currentPage, value); }
         }
-
+        
         public MainWindowViewModel(IAuthoriazationProvider authoriazationProvider, NavigationPageService pageService)
         {
 
@@ -32,22 +32,14 @@ namespace SmileBoyClient.ViewModels
             
             _pageService.OnPageChanged += (page) => CurrentPage = page;
 
-            LogoutCommand = new DelegateCommand(SessionLogin);
-
-            pageService.NavigateTo(PageHelper.LoginPage);
-        }
-
-        private async void SessionLogin(object obj)
-        {
+            //progress session logic, but this code need refactoring
             var state = _authorizationProvider.AuthenticationState;
+            _authorizationProvider.ExtendSession();
 
             if (state.IsAuthentication)
-            {
-                await _authorizationProvider.ExtendSession();
-
                 _pageService.NavigateTo(PageHelper.MainPage);
-                return;
-            }
+            else
+                pageService.NavigateTo(PageHelper.LoginPage);
         }
     }
 }

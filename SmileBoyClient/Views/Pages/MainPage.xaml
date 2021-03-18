@@ -11,84 +11,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainPage"
       DataContext="{Binding MainPage, Source={StaticResource ViewModelLocator}}">
-    <Page.Resources>
-        <Style x:Key="MyButton" TargetType="Button">
-            <Setter Property="OverridesDefaultStyle" Value="True" />
-            <Setter Property="Cursor" Value="Hand" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Opacity" Value="1" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <ImageBrush x:Key="tb_mouse_over" ImageSource="/Assets/grid (2) (1).png"/>
-        <Style x:Key="Font_style" TargetType="TextBlock">
-            <Setter Property="FontFamily"
-                    Value="/Fonts/Montserrat-Thin.ttf #Montserrat"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
-        <Style x:Key="Font_styleRegular" TargetType="TextBlock">
-            <Setter Property="FontFamily"
-                    Value="/Fonts/Montserrat-Regular.ttf #Montserrat"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="20"/>
-        </Style>
-        <Style x:Key="tb_style" TargetType="{x:Type ToggleButton}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ToggleButton}">
-                        <Border x:Name="border"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}"
-                                SnapsToDevicePixels="True" Margin="6,6,6.4,6.4">
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background"
-                                        TargetName="border"
-                                        Value="{StaticResource tb_mouse_over}"/>
-                                <Setter Property="BorderBrush"
-                                        TargetName="border"
-                                        Value="{StaticResource tb_mouse_over}"/>
-                            </Trigger>
-                            <Trigger Property="IsChecked" Value="True">
-                                <Setter Property="Background"
-                                        TargetName="border"
-                                        Value="{StaticResource tb_mouse_over}"/>
-                                <Setter Property="BorderBrush"
-                                        TargetName="border"
-                                        Value="{StaticResource tb_mouse_over}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style TargetType="{x:Type Button}" x:Key="ImageButtonStyle">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <ContentPresenter/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Page.Resources>
-
+    
     <Grid>
         <Grid>
 
@@ -166,7 +89,7 @@
                                Background="Transparent"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"
-                               Style="{StaticResource Font_styleRegular}"
+                               Style="{StaticResource MontReg}"
                                />
                         <ToggleButton x:Name="tg_btn" Grid.Column="0"
                               VerticalAlignment="Center" HorizontalAlignment="Left"
@@ -245,7 +168,7 @@
                                 </Image>
                                 <TextBlock Text="Home"
                                     Margin="39, 0, 0, 0"
-                                   Style="{StaticResource Font_style}"/>
+                                   Style="{StaticResource MontThin}"/>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Left" Cursor="Hand"
@@ -274,7 +197,7 @@
                                 </Image>
                                 <TextBlock Text="Product"
                                     Margin="38, 0, 0, 0"
-                                   Style="{StaticResource Font_style}"/>
+                                   Style="{StaticResource MontThin}"/>
                             </StackPanel>
                         </ListViewItem>
                         
@@ -304,7 +227,7 @@
                                 </Image>
                                 <TextBlock Text="Customer"
                                     Margin="38, 0, 0, 0"
-                                   Style="{StaticResource Font_style}"/>
+                                   Style="{StaticResource MontThin}"/>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Left" Cursor="Hand"
@@ -333,7 +256,7 @@
                                 </Image>
                                 <TextBlock Text="Order"
                                     Margin="38, 0, 0, 0"
-                                   Style="{StaticResource Font_style}"/>
+                                   Style="{StaticResource MontThin}"/>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem HorizontalAlignment="Left" Cursor="Hand"
@@ -350,7 +273,7 @@
                                        Margin="13.5,0,0,0"/>
                                 <TextBlock Text="Settings"
                                     Margin="38, 0, 0, 0"
-                                   Style="{StaticResource Font_style}"/>
+                                   Style="{StaticResource MontThin}"/>
                             </StackPanel>
                         </ListViewItem>
                     </ListView>
@@ -375,7 +298,7 @@
                                     <TextBlock Text="Logout"
                                     Margin="38, 0, 0, 0"
                                    
-                                    Style="{StaticResource Font_style}"/>
+                                    Style="{StaticResource MontThin}"/>
                                 </StackPanel>
                             </Button>
                         </ListViewItem>

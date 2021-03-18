@@ -4,11 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      xmlns:local="clr-namespace:SmileBoyClient.Views.Tabs"
+      xmlns:local="clr-namespace:SmileBoyClient.Views.Tabs" 
+      xmlns:smileboy="clr-namespace:SmileBoyClient"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProductTab"
       DataContext="{Binding ProductTab, Source={StaticResource ViewModelLocator}}">
+
+    <Page.Resources>
+    </Page.Resources>
 
     <Grid>
         <Border Background="#F5F3FB" Margin="60"
@@ -36,13 +40,13 @@
                     <Button Command="{Binding DeleteManyCommand}"
                             Style="{DynamicResource MaterialDesignToolButton}"
                             Margin="0 0 5 0">
-                        <materialDesign:PackIcon Kind="AccountMultipleRemove" />
+                        <materialDesign:PackIcon Kind="Trolley" />
                     </Button>
 
                     <Button Command="{Binding AddCommand}"
                             Style="{DynamicResource MaterialDesignToolButton}"
                             Margin="0 0 5 0">
-                        <materialDesign:PackIcon Kind="AccountPlus"/>
+                        <materialDesign:PackIcon Kind="TrolleyPlus"/>
                     </Button>
 
                     <Button Style="{DynamicResource MaterialDesignToolButton}"
@@ -52,10 +56,13 @@
 
                     <materialDesign:ColorZone Background="White"
                                               VerticalAlignment="Center"
-                                              BorderThickness="1"
+                                              BorderThickness="0"
                                               BorderBrush="#C4C4C4"
-                                              CornerRadius="5"
                                               Padding="8 0"
+                                              FontSize="12"
+                                              CornerRadius="8"
+                                              Height="40"
+                                              FontFamily="{StaticResource RobotoLight}"
                                               Margin="16 0">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -68,64 +75,77 @@
                                 <materialDesign:PackIcon Kind="Magnify"
                                                          Opacity=".56" />
                             </Button>
-                            <TextBox Grid.Column="1"
+                            <TextBox 
+                                     Grid.Column="1"
                                      Text="{Binding Filter}"
                                      Margin="8 0 0 0"
                                      materialDesign:HintAssist.Hint="Search"
                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                      BorderThickness="0"
+                                     
                                      MinWidth="200"
                                      VerticalAlignment="Center" />
                         </Grid>
                     </materialDesign:ColorZone>
                 </StackPanel>
 
-                <ListView 
-                    Grid.Row="1"
-                           
+                <ListView Grid.Row="1"
                           x:Name="lvProducts"
+                          Background="Gray"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           ItemsSource="{Binding ListItems, Mode=TwoWay}"
-                          Grid.ColumnSpan="2"
-                          >
+                          ItemContainerStyle="{StaticResource DisableHover}" Grid.ColumnSpan="2">
                     <ListView.View>
                         <GridView >
 
-                            <GridViewColumn Width="80">
+                            <GridViewColumn Width="150">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <CheckBox IsChecked="{Binding Check, UpdateSourceTrigger=PropertyChanged}"
-                                                  Background="#7D9AFF"/>
+                                                  Background="#ca3e47"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
-                                <GridViewColumnHeader Padding="7">
+                                <GridViewColumnHeader Padding="10">
                                     <CheckBox Command="{Binding CheckAllCommand}"
                                               IsChecked="{Binding IsCheckAll, UpdateSourceTrigger=PropertyChanged}"
-                                              Background="#7D9AFF"/>
+                                              Background="#ca3e47"/>
                                 </GridViewColumnHeader>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="200">
-                                <GridViewColumnHeader VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False">
-                                    NAME
+                            <GridViewColumn Width="250" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <materialDesign:Chip Command="{Binding DataContext.UpdateCommand, 
+                                            ElementName=lvEmployees}"
+                                                             CommandParameter="{Binding Model.Id}"
+                                                             IconBackground="Transparent"
+                                                             Background="Transparent"
+                                                             Content="{Binding Model.Name}">
+                                            <materialDesign:Chip.Icon>
+                                                <Image Width="42"
+                                                       Height="42"
+                                                       HorizontalAlignment="Center"
+                                                       Source="{Binding Model.Img,
+                                                                Converter={StaticResource ImageConverter}}"/>
+                                            </materialDesign:Chip.Icon>
+                                        </materialDesign:Chip>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False">
+                                    Name
                                 </GridViewColumnHeader>
                             </GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Model.Position}"
-                                            Width="200">
-                                <GridViewColumnHeader VerticalAlignment="Center" HorizontalAlignment="Left"  IsHitTestVisible="False">
-                                    POSITION
+
+                            <GridViewColumn DisplayMemberBinding="{Binding Model.Manufacturer}"
+                                            Width="300">
+                                <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left"  IsHitTestVisible="False">
+                                    Manufacturer
                                 </GridViewColumnHeader>
                             </GridViewColumn>
-                            <GridViewColumn Width="200"
-                                            DisplayMemberBinding="{Binding Model.Phone}">
-                                <GridViewColumnHeader VerticalAlignment="Center" HorizontalAlignment="Left"   IsHitTestVisible="False">
-                                    NUMBER
-                                </GridViewColumnHeader>
-                            </GridViewColumn>
-                            <GridViewColumn Width="200"
-                                            DisplayMemberBinding="{Binding Model.Email}">
-                                <GridViewColumnHeader VerticalAlignment="Center" HorizontalAlignment="Left"  IsHitTestVisible="False">
-                                    EMAIL
+                            <GridViewColumn Width="250"
+                                            DisplayMemberBinding="{Binding Model.CurrentPrice}">
+                                <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left"   IsHitTestVisible="False">
+                                    Current price
                                 </GridViewColumnHeader>
                             </GridViewColumn>
 
@@ -142,14 +162,14 @@
                                             <StackPanel Width="150">
                                                 <Button FontWeight="Regular"
                                                         Command="{Binding DataContext.UpdateCommand, 
-                                                        ElementName=lvEmployees}"
+                                                        ElementName=lvProducts}"
                                                         CommandParameter="{Binding Model.Id}">
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Text="Edit"/>
                                                     </StackPanel>
                                                 </Button>
                                                 <Button FontWeight="Regular"
-                                                        Command="{Binding DataContext.DeleteCommand, ElementName=lvEmployees}"
+                                                        Command="{Binding DataContext.DeleteCommand, ElementName=lvProducts}"
                                                         CommandParameter="{Binding Model.Id}">
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Text="Delete"/>

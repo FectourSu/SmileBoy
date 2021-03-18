@@ -6,24 +6,19 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="Styles.xaml"/>
                 <ResourceDictionary>
                     <FontFamily x:Key="RobotoBold">pack://application:,,,/Fonts/Roboto-Bold.ttf#Roboto Sans</FontFamily>
                     <FontFamily x:Key="RobotoRegular">pack://application:,,,/Fonts/Roboto-Regular.ttf#Roboto Sans</FontFamily>
                     <FontFamily x:Key="RobotoMedium">pack://application:,,,/Fonts/Roboto-Medium.ttf#Roboto Sans</FontFamily>
                     <FontFamily x:Key="RobotoThin">pack://application:,,,/Fonts/Roboto-Thin.ttf#Roboto Sans</FontFamily>
+                    <FontFamily x:Key="RobotoLight">pack://application:,,,/Fonts/Roboto-Light.ttf#Roboto Sans</FontFamily>
                     <FontFamily x:Key="MontserratThin">pack://application:,,,/Fonts/Montserrat-Thin.ttf#Montserrat Sans</FontFamily>
                     <FontFamily x:Key="MontserratRegular">pack://application:,,,/Fonts/Montserrat-Regular.ttf#Montserrat Sans</FontFamily>
                     <FontFamily x:Key="MontserratBold">pack://application:,,,/Fonts/Montserrat-Bold.ttf#Montserrat Sans</FontFamily>
                     <local:ViewModelLocator x:Key="ViewModelLocator"/>
                 </ResourceDictionary>
-                <ResourceDictionary/>
+                <ResourceDictionary Source="ImageDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
