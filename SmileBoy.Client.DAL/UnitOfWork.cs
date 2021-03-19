@@ -6,7 +6,7 @@ using System;
 
 namespace SmileBoy.Client.DAL
 {
-    class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         public UnitOfWork(string connectionString, string dataBaseName)
         {

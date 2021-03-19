@@ -19,7 +19,7 @@ namespace SmileBoy.Server.Infrastructure
                     //check if password match - remember to hash password if stored as hash in db
 
                     //set the result
-                    context.Result = new GrantValidationResult(
+                     context.Result = new GrantValidationResult(
                         subject: context.UserName,
                         authenticationMethod: "custom",
                         claims: GetUserClaims(context.UserName));

@@ -7,6 +7,7 @@ using SmileBoyClient.Core.IContract;
 using SmileBoyClient.Core.IContract.IProviders;
 using SmileBoyClient.Core.IContract.IService;
 using SmileBoyClient.Core.Models;
+using SmileBoyClient.Extentions;
 using SmileBoyClient.Navigation;
 using SmileBoyClient.ViewModels;
 using System;
@@ -25,7 +26,7 @@ namespace SmileBoyClient
             ConfigureService(services);
 
             _provider = services.BuildServiceProvider();
-            
+
         }
 
         public static void ConfigureService(IServiceCollection services)
@@ -50,14 +51,17 @@ namespace SmileBoyClient
             services.AddScoped<IAuthoriazationProvider, AuthorizationProvider>();
 
             //Infrastructure
+            services.AddAutoMapper();
             services.AddSingleton<NavigationPageService>();
             services.AddScoped<HttpClient>();
             services.AddSingleton<ITokenStorage, InMemoryTokenStorage>()
                 .AddTransient<IReaderTokenStorage>(p => p.GetService<ITokenStorage>());
+
+            //Services
             services.AddScoped<IProductService, ProductService>();
 
-            //services.AutoMapper();
-
+            //Data
+            services.AddMongoProvider();
         }
 
         public MainWindowViewModel MainWindow =>

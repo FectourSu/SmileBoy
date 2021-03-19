@@ -9,14 +9,6 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Data.OracleClient" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Transactions" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Fonts\Montserrat-Regular.ttf" />
     <Resource Include="Fonts\Montserrat-Thin.ttf" />
     <Resource Include="Fonts\Montserrat-Bold.ttf" />
@@ -66,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmileBoy.Client.BL\SmileBoy.Client.Core.csproj" />
+    <ProjectReference Include="..\SmileBoy.Client.DAL\SmileBoy.Client.DAL.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="appsettings.json" />
@@ -93,5 +86,8 @@
     <Content Remove="C:\Users\dimon\Desktop\SmileBoyClient\packages\MongoDB.Driver.Core.2.11.6\build\../runtimes/win/native/snappy32.dll" />
     <Content Remove="C:\Users\dimon\Desktop\SmileBoyClient\packages\MongoDB.Driver.Core.2.11.6\build\../runtimes/win/native/snappy64.dll" />
     <Content Remove="C:\Users\dimon\Desktop\SmileBoyClient\packages\MongoDB.Libmongocrypt.1.0.0\build\../x64/native/windows/mongocrypt.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Dialogs\" />
   </ItemGroup>
 </Project>

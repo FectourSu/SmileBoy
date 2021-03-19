@@ -1,10 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace SmileBoyClient.ViewModels
 {
     class ViewModelBase : INotifyPropertyChanged
     {
+        public bool _disposed = false;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -27,6 +29,17 @@ namespace SmileBoyClient.ViewModels
 
             return true;
 
+        }
+
+        public virtual void Dispose(bool collect)
+        {
+            if (_disposed)
+                return;
+
+            if (collect)
+                GC.Collect();
+
+            _disposed = true;
         }
     }
 }

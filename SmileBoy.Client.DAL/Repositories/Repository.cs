@@ -2,6 +2,7 @@
 using SmileBoy.Client.Core.IContract.IData;
 using SmileBoy.Client.Entity;
 using SmileBoyClient.Helpers;
+using MongoDB.Driver.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,6 @@ namespace SmileBoy.Client.DAL.Repositories
 
         protected readonly IMongoCollection<TEntity> _collection;
 
-        private readonly string _tableName;
-
-        protected readonly IMongoDatabase Database;
-
         public Repository(IMongoDatabase database, string tablename, bool searchable = true)
         {
             _collection = Has.NotNull(database).GetCollection<TEntity>(tablename);
@@ -35,7 +32,10 @@ namespace SmileBoy.Client.DAL.Repositories
 
         private void CreateIndex()
         {
-            throw new NotImplementedException();
+            var filter = Builders<TEntity>.IndexKeys.Text("$**");
+            var indexModel = new CreateIndexModel<TEntity>(filter);
+
+            _collection.Indexes.CreateOne(indexModel);
         }
 
 
@@ -46,11 +46,8 @@ namespace SmileBoy.Client.DAL.Repositories
         /// <returns></returns>
         public virtual async Task DeleteAsync(TKey id)
         {
-            var collection = Database.GetCollection<TEntity>(_tableName);
-
             var filter = Builders<TEntity>.Filter.Eq("Id", id);
-
-            await collection.DeleteOneAsync(filter);
+            await _collection.DeleteOneAsync(filter);
         }
 
         /// <summary>
@@ -65,9 +62,7 @@ namespace SmileBoy.Client.DAL.Repositories
         public virtual async Task<IEnumerable<TEntity>> SearchAsync(string search)
         {
             var filter = Builders<TEntity>.Filter.Text(search);
-
-            return (await _collection.FindAsync(filter))
-                .ToList();
+            return (await _collection.FindAsync(filter)).ToList();
         }
 
         /// <summary>
@@ -76,14 +71,7 @@ namespace SmileBoy.Client.DAL.Repositories
         /// <returns></returns>
         public virtual async Task<TEntity> GetByIdAsync(TKey id)
         {
-            var collection = Database.GetCollection<TEntity>(_tableName);
-
-            var filter = Builders<TEntity>.Filter.Eq("Id", id);
-
-            using(var entities = await collection.FindAsync(filter))
-            {
-                return await entities.FirstOrDefaultAsync();
-            }
+            return await _collection.AsQueryable().SingleAsync(e => e.Id.Equals(id));
         }
 
         /// <summary>
@@ -92,10 +80,8 @@ namespace SmileBoy.Client.DAL.Repositories
         /// <returns></returns>
         public virtual async Task InsertAsync(TEntity entity)
         {
-            var collection = Database.GetCollection<TEntity>(_tableName);
             entity.CreatedBy = entity.UpdateBy = DateTime.Now;
-
-            await collection.InsertOneAsync(entity);
+            await _collection.InsertOneAsync(entity);
         }
 
         /// <summary>
@@ -105,21 +91,22 @@ namespace SmileBoy.Client.DAL.Repositories
         /// <returns></returns>
         public virtual async Task UpdateAsync(TKey id, TEntity entity)
         {
-            var collection = Database.GetCollection<TEntity>(_tableName);
             var filter = Builders<TEntity>.Filter.Eq("Id", id);
 
             var foundEntity = await GetByIdAsync(id);
 
+            entity.Id = id;
             entity.CreatedBy = foundEntity?.CreatedBy ?? DateTime.Now;
             entity.UpdateBy = DateTime.Now;
 
-            await collection.ReplaceOneAsync(filter, entity,
+            await _collection.ReplaceOneAsync(filter, entity,
                 new ReplaceOptions { IsUpsert = true });
         }
 
-        public Task<long> CountAsync()
+        public virtual async Task<long> CountAsync()
         {
-            throw new NotImplementedException();
+            var filter = Builders<TEntity>.Filter.Empty;
+            return await _collection.CountDocumentsAsync(filter);
         }
     }
 }

@@ -2,5 +2,6 @@
 {
     class ProductViewModel : ViewModelBase
     {
+
     }
 }

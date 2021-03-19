@@ -144,5 +144,11 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="PText" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontWeight" Value="Regular"></Setter>
+    </Style>
+    
     
 </ResourceDictionary>
