@@ -22,4 +22,3 @@
 * [ ] Add the resulting charts (LiveCharts)
 
 <img align="right" src="https://vsednr.ru/wp-content/uploads/2018/06/donnu-fizika-1024x1024.png" width="100" height="100">
-<img align="right" src="https://lh3.googleusercontent.com/pw/ACtC-3eAt5FymLvgA2rkopOHIjtNNJPn39X-uYDXACqyWwSuh4lmipBDSEtfGNSIkwKyp5qlrsgai1ZoXyezgSJ_Eq64qqYeH-dlmwbiIix1BaPey9t9s3ZPBrJBGYkxlqiOMSMpCHSebM-TIxUA_thraDLV=w319-h331-no?authuser=0" width="100" height="100">
