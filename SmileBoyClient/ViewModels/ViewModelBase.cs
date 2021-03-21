@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace SmileBoyClient.ViewModels
 {
-    class ViewModelBase : INotifyPropertyChanged
+    public abstract class ViewModelBase : INotifyPropertyChanged
     {
         public bool _disposed = false;
 

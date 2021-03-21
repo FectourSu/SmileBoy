@@ -15,7 +15,7 @@ namespace SmileBoyClient.Extentions
         {
             var mappingConfig = new MapperConfiguration(mc =>
             {
-                mc.AddProfile(new ApplicationProfile);
+                mc.AddProfile(new ApplicationProfile());
             });
 
             IMapper mapper = mappingConfig.CreateMapper();

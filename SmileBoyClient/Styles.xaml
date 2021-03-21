@@ -16,6 +16,11 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <Style x:Key="OverTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+        <Setter Property="materialDesign:HintAssist.Foreground" Value="#7D9AFF"/>
+        <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="#7D9AFF"/>
+    </Style>
+        
     <!--LoginPage & MainPage !-->
 
     <Style x:Key="Font_styleRegular" TargetType="TextBlock">

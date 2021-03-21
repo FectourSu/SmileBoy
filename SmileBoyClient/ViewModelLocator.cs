@@ -17,7 +17,7 @@ namespace SmileBoyClient
 {
     class ViewModelLocator
     {
-        public static IServiceProvider _provider;
+        public static IServiceProvider _provider { get; private set; }
 
         public static void Initialize()
         {

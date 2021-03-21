@@ -9,6 +9,7 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <ItemGroup>
+    <Resource Include="Assets\Page.png" />
     <Resource Include="Fonts\Montserrat-Regular.ttf" />
     <Resource Include="Fonts\Montserrat-Thin.ttf" />
     <Resource Include="Fonts\Montserrat-Bold.ttf" />
@@ -88,6 +89,6 @@
     <Content Remove="C:\Users\dimon\Desktop\SmileBoyClient\packages\MongoDB.Libmongocrypt.1.0.0\build\../x64/native/windows/mongocrypt.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Dialogs\" />
+    <None Remove="Assets\Page.png" />
   </ItemGroup>
 </Project>
