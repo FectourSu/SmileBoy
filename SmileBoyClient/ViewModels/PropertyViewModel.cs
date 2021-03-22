@@ -40,7 +40,10 @@ namespace SmileBoyClient.ViewModels
         {
             try
             {
-                Validator.ValidateProperty(value, new ValidationContext(new TModel(), null, null)
+                var property = typeof(TModel).GetProperty(nameProperty);
+                var cvalue = Convert.ChangeType(value, property.PropertyType);
+
+                Validator.ValidateProperty(cvalue, new ValidationContext(new TModel(), null, null)
                 {
                     MemberName = nameProperty
                 });

@@ -7,6 +7,7 @@ using SmileBoyClient.Core.IContract;
 using SmileBoyClient.Core.IContract.IProviders;
 using SmileBoyClient.Core.IContract.IService;
 using SmileBoyClient.Core.Models;
+using SmileBoyClient.Dialogs;
 using SmileBoyClient.Extentions;
 using SmileBoyClient.Navigation;
 using SmileBoyClient.ViewModels;
@@ -59,6 +60,7 @@ namespace SmileBoyClient
 
             //Services
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IDialogService, DialogService>();
 
             //Data
             services.AddMongoProvider();

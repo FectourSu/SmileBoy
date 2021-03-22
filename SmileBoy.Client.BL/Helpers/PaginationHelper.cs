@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SmileBoy.Client.Core.Helpers
 {
@@ -21,5 +22,11 @@ namespace SmileBoy.Client.Core.Helpers
                 .Skip((index - 1) * pageSize)
                 .Take(pageSize);
         }
+
+        public static async Task<IEnumerable<TResult>> SelectAsync<TSource, TResult>(this IEnumerable<TSource> sources, Func<TSource, Task<TResult>> method)
+        {
+            return await Task.WhenAll(sources.Select(async s => await method(s)));
+        }
+
     }
 }

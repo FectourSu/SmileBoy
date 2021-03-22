@@ -136,16 +136,16 @@
             <Trigger Property="IsMouseOver" 
                      Value="True">
                 <Setter Property="Background" 
-                        Value="#F1F1FB" />
+                        Value="White" />
                 <Setter Property="BorderBrush" 
-                        Value="#F1F1FB" />
+                        Value="White" />
             </Trigger>
             <Trigger Property="IsSelected" 
                      Value="True">
                 <Setter Property="Background" 
-                        Value="#F1F1FB" />
+                        Value="White" />
                 <Setter Property="BorderBrush" 
-                        Value="#F1F1FB" />
+                        Value="White" />
             </Trigger>
         </Style.Triggers>
     </Style>

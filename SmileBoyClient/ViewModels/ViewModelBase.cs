@@ -31,6 +31,10 @@ namespace SmileBoyClient.ViewModels
 
         }
 
+        /// <summary>
+        /// Memory leak rectified
+        /// /// </summary>
+        /// <param name="collect"></param>
         public virtual void Dispose(bool collect)
         {
             if (_disposed)

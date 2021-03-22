@@ -1,4 +1,5 @@
 ﻿using SmileBoyClient.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -34,7 +35,7 @@ namespace SmileBoyClient.Helpers
 
                 }
 
-                property.SetValue(result, item.Text);
+                property.SetValue(result, Convert.ChangeType(item.Text, property.PropertyType));
             }
 
             return result;

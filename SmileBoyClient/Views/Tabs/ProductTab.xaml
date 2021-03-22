@@ -28,13 +28,19 @@
                     <RowDefinition MinHeight="300"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Text="PRODUCT"
-                           FontSize="18"
-                           FontFamily="{StaticResource MontserratBold}"
-                           Margin="25,35,0,10"
-                           Foreground="#525252"
-                           HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+                <materialDesign:TransitioningContent OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.15}">
+                    <materialDesign:TransitioningContent.OpeningEffects>
+                        <materialDesign:TransitionEffect Kind="SlideInFromLeft" />
+                    </materialDesign:TransitioningContent.OpeningEffects>
 
+                    <TextBlock Text="PRODUCT"
+                               FontSize="18"
+                               FontFamily="{StaticResource MontserratBold}"
+                               Margin="25,35,0,10"
+                               Foreground="#525252"
+                               HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+                </materialDesign:TransitioningContent>
+                
                 <StackPanel Orientation="Horizontal" Margin="0 5 0 0"
                             HorizontalAlignment="Right" Grid.Column="1">
 
@@ -89,102 +95,106 @@
                         </Grid>
                     </materialDesign:ColorZone>
                 </StackPanel>
-
-                <ListView Grid.Row="1"
+                <materialDesign:TransitioningContent Grid.Row="1" Grid.ColumnSpan="2" OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:1.15}">
+                    <materialDesign:TransitioningContent.OpeningEffects>
+                        <materialDesign:TransitionEffect Kind="SlideInFromBottom" />
+                    </materialDesign:TransitioningContent.OpeningEffects>
+                    <ListView 
                           x:Name="lvProducts"
-                          Background="Gray"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           ItemsSource="{Binding ListItems, Mode=TwoWay}"
-                          ItemContainerStyle="{StaticResource DisableHover}" Grid.ColumnSpan="2">
-                    <ListView.View>
-                        <GridView >
+                          ItemContainerStyle="{StaticResource DisableHover}" >
 
-                            <GridViewColumn Width="150">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <CheckBox IsChecked="{Binding Check, UpdateSourceTrigger=PropertyChanged}"
+                        <ListView.View>
+
+                            <GridView>
+
+                                <GridViewColumn Width="150">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Check, UpdateSourceTrigger=PropertyChanged}"
                                                   Background="#ca3e47"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                                <GridViewColumnHeader Padding="10">
-                                    <CheckBox Command="{Binding CheckAllCommand}"
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                    <GridViewColumnHeader Padding="10">
+                                        <CheckBox Command="{Binding CheckAllCommand}"
                                               IsChecked="{Binding IsCheckAll, UpdateSourceTrigger=PropertyChanged}"
                                               Background="#ca3e47"/>
-                                </GridViewColumnHeader>
-                            </GridViewColumn>
+                                    </GridViewColumnHeader>
+                                </GridViewColumn>
 
-                            <GridViewColumn Width="250" >
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <materialDesign:Chip Command="{Binding DataContext.UpdateCommand, 
-                                            ElementName=lvEmployees}"
+                                <GridViewColumn Width="250" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <materialDesign:Chip Command="{Binding DataContext.UpdateCommand, 
+                                            ElementName=lvProduct}"
                                                              CommandParameter="{Binding Model.Id}"
                                                              IconBackground="Transparent"
                                                              Background="Transparent"
                                                              Content="{Binding Model.Name}">
-                                            <materialDesign:Chip.Icon>
-                                                <Image Width="42"
+                                                <materialDesign:Chip.Icon>
+                                                    <Image Width="42"
                                                        Height="42"
                                                        HorizontalAlignment="Center"
                                                        Source="{Binding Model.Img,
                                                                 Converter={StaticResource ImageConverter}}"/>
-                                            </materialDesign:Chip.Icon>
-                                        </materialDesign:Chip>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                                <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False">
-                                    Name
-                                </GridViewColumnHeader>
-                            </GridViewColumn>
+                                                </materialDesign:Chip.Icon>
+                                            </materialDesign:Chip>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                    <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False">
+                                        Name
+                                    </GridViewColumnHeader>
+                                </GridViewColumn>
 
-                            <GridViewColumn DisplayMemberBinding="{Binding Model.Manufacturer}"
+                                <GridViewColumn DisplayMemberBinding="{Binding Model.Manufacturer}"
                                             Width="300">
-                                <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left"  IsHitTestVisible="False">
-                                    Manufacturer
-                                </GridViewColumnHeader>
-                            </GridViewColumn>
-                            <GridViewColumn Width="250"
+                                    <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left"  IsHitTestVisible="False">
+                                        Manufacturer
+                                    </GridViewColumnHeader>
+                                </GridViewColumn>
+                                <GridViewColumn Width="250"
                                             DisplayMemberBinding="{Binding Model.CurrentPrice}">
-                                <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left"   IsHitTestVisible="False">
-                                    Current price
-                                </GridViewColumnHeader>
-                            </GridViewColumn>
+                                    <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left"   IsHitTestVisible="False">
+                                        Current price
+                                    </GridViewColumnHeader>
+                                </GridViewColumn>
 
-                            <GridViewColumn Width="35">
-                                <GridViewColumnHeader IsHitTestVisible="False">
-                                </GridViewColumnHeader>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" 
+                                <GridViewColumn Width="35">
+                                    <GridViewColumnHeader IsHitTestVisible="False">
+                                    </GridViewColumnHeader>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" 
                                                                  StaysOpen="False">
-                                            <materialDesign:PopupBox.ToggleContent>
-                                                <materialDesign:PackIcon Kind="DotsHorizontal" />
-                                            </materialDesign:PopupBox.ToggleContent>
-                                            <StackPanel Width="150">
-                                                <Button FontWeight="Regular"
+                                                <materialDesign:PopupBox.ToggleContent>
+                                                    <materialDesign:PackIcon Kind="DotsHorizontal" />
+                                                </materialDesign:PopupBox.ToggleContent>
+                                                <StackPanel Width="150">
+                                                    <Button FontWeight="Regular"
                                                         Command="{Binding DataContext.UpdateCommand, 
                                                         ElementName=lvProducts}"
                                                         CommandParameter="{Binding Model.Id}">
-                                                    <StackPanel Orientation="Horizontal">
-                                                        <TextBlock Text="Edit"/>
-                                                    </StackPanel>
-                                                </Button>
-                                                <Button FontWeight="Regular"
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="Edit"/>
+                                                        </StackPanel>
+                                                    </Button>
+                                                    <Button FontWeight="Regular"
                                                         Command="{Binding DataContext.DeleteCommand, ElementName=lvProducts}"
                                                         CommandParameter="{Binding Model.Id}">
-                                                    <StackPanel Orientation="Horizontal">
-                                                        <TextBlock Text="Delete"/>
-                                                    </StackPanel>
-                                                </Button>
-                                            </StackPanel>
-                                        </materialDesign:PopupBox>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="Delete"/>
+                                                        </StackPanel>
+                                                    </Button>
+                                                </StackPanel>
+                                            </materialDesign:PopupBox>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </materialDesign:TransitioningContent>
                 <StackPanel Grid.Row="2" Margin="25,45,25,0"
                             Orientation="Horizontal" HorizontalAlignment="Right" Grid.ColumnSpan="2">
                     <local:PaginationControl DataContext="{Binding Pagination}"/>
