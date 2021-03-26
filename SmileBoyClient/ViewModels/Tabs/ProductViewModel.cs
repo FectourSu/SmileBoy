@@ -36,10 +36,11 @@ namespace SmileBoyClient.ViewModels
         {
             _service = Has.NotNull(service, nameof(service));
 
-            PageSize = 10;
+            PageSize = 6;
             Pagination = new PaginationViewModel(ReceiveData, PageSize);
 
             CheckAllCommand = new DelegateCommand(Check);
+            DeleteManyCommand = new DelegateCommand(DeleteMany, _ => IsAnyCheck);
 
             ListItems = new BindingList<RowCheckBoxViewModel<ProductDto>>();
             ListItems.ListChanged += OnListChanged;

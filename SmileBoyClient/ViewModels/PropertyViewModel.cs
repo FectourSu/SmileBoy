@@ -35,7 +35,6 @@ namespace SmileBoyClient.ViewModels
                 Set(ref _text, value); 
             }
         }
-
         private void ValidateProperty<T>(T value, string nameProperty)
         {
             try

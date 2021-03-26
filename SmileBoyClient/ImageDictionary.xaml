@@ -1,5 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <BitmapImage x:Key="DefaultImage" UriSource="pack://application:,,,/Assets/Product.png"/>
-    <BitmapImage x:Key="ImageNotFound" UriSource="pack://application:,,,/Assets/notImage.jpg"/>
+    <BitmapImage x:Key="DefaultImage" UriSource="pack://application:,,,/Assets/DefaultImage.png"/>
+    <BitmapImage x:Key="NotImage" UriSource="pack://application:,,,/Assets/NotImage.png"/>
 </ResourceDictionary>

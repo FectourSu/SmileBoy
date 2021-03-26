@@ -48,8 +48,22 @@ namespace SmileBoyClient.ViewModels
 
             //Crud command
             AddCommand = new DelegateCommand(OnAddDialog, CanExecuteAdd);
+            UpdateCommand = new DelegateCommand(OnUpdateDialog, CanExecuteUpdate);
             DeleteCommand = new DelegateCommand(OnDelete, CanExecuteDelete);
 
+            RefreshCommand = new DelegateCommand(_ =>
+            {
+                if (!string.IsNullOrEmpty(Filter))
+                    Pagination.Reset();
+
+                Filter = string.Empty;
+                ReceiveData(Pagination.Index, PageSize);
+            });
+            SearchCommand = new DelegateCommand(_ =>
+            {
+                Pagination.Reset();
+                ReceiveData(Pagination.Index, PageSize);
+            });
         }
 
         protected virtual bool CanExecuteAdd(object obj) => true;

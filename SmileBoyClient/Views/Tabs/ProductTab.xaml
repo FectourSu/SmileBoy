@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:SmileBoyClient.Views.Controls" 
       xmlns:smileboy="clr-namespace:SmileBoyClient.Converter"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="500" d:DesignWidth="800"
       Title="ProductTab"
       DataContext="{Binding ProductTab, Source={StaticResource ViewModelLocator}}">
 
@@ -16,16 +16,15 @@
     </Page.Resources>
 
     <Grid>
-        <Border Background="#F5F3FB" Margin="60"
-                >
-            <Grid>
+        <Border Background="#F5F3FB" Margin="60,60,60,10" >
+           <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition MinHeight="300"></RowDefinition>
+                    <RowDefinition MinHeight="360"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <materialDesign:TransitioningContent OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.15}">
@@ -99,31 +98,36 @@
                     <materialDesign:TransitioningContent.OpeningEffects>
                         <materialDesign:TransitionEffect Kind="SlideInFromBottom" />
                     </materialDesign:TransitioningContent.OpeningEffects>
-                    <ListView 
+                    <ListView BorderBrush="Transparent" BorderThickness="0"
                           x:Name="lvProducts"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           ItemsSource="{Binding ListItems, Mode=TwoWay}"
                           ItemContainerStyle="{StaticResource DisableHover}" >
-
                         <ListView.View>
-
                             <GridView>
-
-                                <GridViewColumn Width="150">
+                                <GridViewColumn Width="50">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <CheckBox IsChecked="{Binding Check, UpdateSourceTrigger=PropertyChanged}"
-                                                  Background="#ca3e47"/>
+                                                  Background="#ca3e47">
+                                                <CheckBox.LayoutTransform>
+                                                    <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                                </CheckBox.LayoutTransform>
+                                            </CheckBox>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
-                                    <GridViewColumnHeader Padding="10">
+                                    <GridViewColumnHeader Padding="4">
                                         <CheckBox Command="{Binding CheckAllCommand}"
                                               IsChecked="{Binding IsCheckAll, UpdateSourceTrigger=PropertyChanged}"
-                                              Background="#ca3e47"/>
+                                              Background="#ca3e47">
+                                            <CheckBox.LayoutTransform>
+                                                <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                            </CheckBox.LayoutTransform>
+                                        </CheckBox>
                                     </GridViewColumnHeader>
                                 </GridViewColumn>
-
-                                <GridViewColumn Width="250" >
+                                
+                                <GridViewColumn Width="250">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <materialDesign:Chip Command="{Binding DataContext.UpdateCommand, 
@@ -142,25 +146,25 @@
                                             </materialDesign:Chip>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
-                                    <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False">
+                                    <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" HorizontalAlignment="Left" IsHitTestVisible="False">
                                         Name
                                     </GridViewColumnHeader>
                                 </GridViewColumn>
 
                                 <GridViewColumn DisplayMemberBinding="{Binding Model.Manufacturer}"
-                                            Width="300">
+                                             Width="250" >
                                     <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left"  IsHitTestVisible="False">
                                         Manufacturer
                                     </GridViewColumnHeader>
                                 </GridViewColumn>
-                                <GridViewColumn Width="250"
+                                <GridViewColumn  Width="280" 
                                             DisplayMemberBinding="{Binding Model.CurrentPrice}">
                                     <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left"   IsHitTestVisible="False">
                                         Current price
                                     </GridViewColumnHeader>
                                 </GridViewColumn>
 
-                                <GridViewColumn Width="35">
+                                <GridViewColumn Width="100">
                                     <GridViewColumnHeader IsHitTestVisible="False">
                                     </GridViewColumnHeader>
                                     <GridViewColumn.CellTemplate>
@@ -195,7 +199,7 @@
                         </ListView.View>
                     </ListView>
                 </materialDesign:TransitioningContent>
-                <StackPanel Grid.Row="2" Margin="25,45,25,0"
+                <StackPanel Grid.Row="2" Margin="25,25,25,0"
                             Orientation="Horizontal" HorizontalAlignment="Right" Grid.ColumnSpan="2">
                     <local:PaginationControl DataContext="{Binding Pagination}"/>
                 </StackPanel>

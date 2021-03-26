@@ -58,6 +58,12 @@
     <Resource Include="Assets\logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\DefaultImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\NotImage.png" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SmileBoy.Client.BL\SmileBoy.Client.Core.csproj" />
     <ProjectReference Include="..\SmileBoy.Client.DAL\SmileBoy.Client.DAL.csproj" />
   </ItemGroup>

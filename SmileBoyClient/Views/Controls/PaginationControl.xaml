@@ -17,7 +17,7 @@
                        Style="{StaticResource PText}"
                        Foreground="#2d2d2d">
                     <TextBlock.Text>
-                        <MultiBinding StringFormat=" {0} OUT OF {1}">
+                        <MultiBinding StringFormat=" {0} OF {1}">
                             <Binding Path="Index" />
                             <Binding Path="PageCount" UpdateSourceTrigger="PropertyChanged"/>
                         </MultiBinding>

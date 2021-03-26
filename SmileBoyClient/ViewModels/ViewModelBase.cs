@@ -28,7 +28,6 @@ namespace SmileBoyClient.ViewModels
             OnPropertyChanged(propertyName);
 
             return true;
-
         }
 
         /// <summary>

@@ -15,7 +15,7 @@ namespace SmileBoyClient.Converter
             var created = Uri.TryCreate(value?.ToString(), UriKind.Absolute, out var uri);
 
             if (!created)
-                return App.Current.Resources["Product"] as BitmapImage;
+                return App.Current.Resources["DefaultImage"] as BitmapImage;
 
             bitmap.UriSource = uri;
             bitmap.CacheOption = BitmapCacheOption.OnLoad;
