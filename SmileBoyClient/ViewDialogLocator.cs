@@ -13,6 +13,7 @@ namespace SmileBoyClient
             viewModel switch
             {
                 AddDialogViewModel<ProductDto> => new AddDialog(),
+                UpdateDialogViewModel<ProductDto> => new UpdateDialog(),
 
                 _ => throw new NotImplementedException(),
             };

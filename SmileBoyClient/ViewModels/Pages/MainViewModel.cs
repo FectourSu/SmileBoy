@@ -1,9 +1,9 @@
 ﻿using SmileBoyClient.Command;
 using SmileBoyClient.Core.IContract.IProviders;
-using SmileBoyClient.Helpers;
 using SmileBoyClient.Navigation;
 using SmileBoyClient.Views.Tabs;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -30,6 +30,27 @@ namespace SmileBoyClient.ViewModels
             }
         }
 
+        private string _userName;
+
+        public string UserName
+        {
+            get { return _userName; }
+            set
+            {
+                Set(ref _userName, value);
+                Icon = _userName.ToUpper().First();
+            }
+        }
+
+        private char _icon;
+
+        public char Icon
+        {
+            get { return _icon; }
+            set { Set(ref _icon, value); }
+        }
+
+
         Page _currentPage;
 
         public Page CurrentPage
@@ -42,10 +63,12 @@ namespace SmileBoyClient.ViewModels
 
         public ICommand CloseCommand { get; }
 
-        public MainViewModel(IAuthoriazationProvider authorizationProvider,NavigationPageService pageService)
+        public MainViewModel(IAuthoriazationProvider authorizationProvider, NavigationPageService pageService)
         {
             _authorizationProvider = authorizationProvider;
-            _pages = PageHelper.Tabs;
+            _pages = ViewPageLocator.Tabs;
+
+            UserName = _authorizationProvider.AuthenticationState.GetClaim("sub");
 
             _navigationPage = pageService;
             CurrentPage = _pages[nameof(HomeTab)];
@@ -57,7 +80,7 @@ namespace SmileBoyClient.ViewModels
         private void Logout(object obj)
         {
             _authorizationProvider.Logout();
-            _navigationPage.NavigateTo(PageHelper.LoginPage);
+            _navigationPage.NavigateTo(ViewPageLocator.LoginPage);
         }
     }
 }

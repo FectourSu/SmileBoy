@@ -3,9 +3,9 @@ using SmileBoyClient.Views.Tabs;
 using System.Collections.Generic;
 using System.Windows.Controls;
 
-namespace SmileBoyClient.Helpers
+namespace SmileBoyClient
 {
-    class PageHelper
+    public static class ViewPageLocator
     {
         public static Page MainPage => new MainPage();
         public static Page LoginPage => new LoginPage();

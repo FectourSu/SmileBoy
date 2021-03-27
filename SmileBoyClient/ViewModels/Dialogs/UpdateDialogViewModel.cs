@@ -2,18 +2,14 @@
 using SmileBoyClient.Command;
 using SmileBoyClient.Helpers;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace SmileBoyClient.ViewModels.Dialogs
 {
-    public class UpdateDialogViewModel<TModel> : ViewModelBase 
+    public class UpdateDialogViewModel<TModel> : ViewModelBase
         where TModel : class, new()
     {
         private BindingList<PropertyViewModel<TModel>> _someCollection;

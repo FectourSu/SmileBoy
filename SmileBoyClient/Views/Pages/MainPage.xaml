@@ -59,8 +59,8 @@
                                              Background="#F5F3FB"
                                              FontFamily="{StaticResource RobotoMedium}"
                                              FontSize="14"
-                                             Content="{Binding UserName, FallbackValue=Admin}"
-                                             Icon="{Binding Icon, FallbackValue=A}" 
+                                             Content="{Binding UserName, FallbackValue=Temp}"
+                                             Icon="{Binding Icon, FallbackValue=T}" 
                                              >
                         </materialDesign:Chip>
                     </Grid>

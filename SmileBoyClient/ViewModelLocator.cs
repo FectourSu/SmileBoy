@@ -53,8 +53,8 @@ namespace SmileBoyClient
 
             //Infrastructure
             services.AddAutoMapper();
-            services.AddSingleton<NavigationPageService>();
             services.AddScoped<HttpClient>();
+            services.AddSingleton<NavigationPageService>();
             services.AddSingleton<ITokenStorage, InMemoryTokenStorage>()
                 .AddTransient<IReaderTokenStorage>(p => p.GetService<ITokenStorage>());
 

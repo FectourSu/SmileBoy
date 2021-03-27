@@ -16,8 +16,14 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <TextBlock Foreground="#2d2d2d" VerticalAlignment="Center" FontSize="22" HorizontalAlignment="Center" FontFamily="{StaticResource MontserratBold}">
+                    ADD DATA
+        <materialDesign:PackIcon Kind="Pen"></materialDesign:PackIcon>
+        </TextBlock>
+        </StackPanel>
         
-        <TextBlock Grid.Row="2" Text="ADD PRODUCT" Foreground="#2d2d2d" VerticalAlignment="Center" FontSize="18" HorizontalAlignment="Center" FontFamily="{StaticResource MontserratBold}"></TextBlock>
         <Button Command="{x:Static wpf:DialogHost.CloseDialogCommand}"
                         Margin="0 0 5 0"
                         HorizontalAlignment="Right"

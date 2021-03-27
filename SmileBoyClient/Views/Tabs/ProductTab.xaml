@@ -14,7 +14,7 @@
     <Page.Resources>
         <smileboy:ImageConverter x:Key="ImageConverter"/>
     </Page.Resources>
-
+    
     <Grid>
         <Border Background="#F5F3FB" Margin="60,60,60,10" >
            <Grid>
@@ -90,7 +90,8 @@
                                      BorderThickness="0"
                                      
                                      MinWidth="200"
-                                     VerticalAlignment="Center" />
+                                     VerticalAlignment="Center">
+                            </TextBox>
                         </Grid>
                     </materialDesign:ColorZone>
                 </StackPanel>
@@ -131,7 +132,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <materialDesign:Chip Command="{Binding DataContext.UpdateCommand, 
-                                            ElementName=lvProduct}"
+                                            ElementName=lvProducts}"
                                                              CommandParameter="{Binding Model.Id}"
                                                              IconBackground="Transparent"
                                                              Background="Transparent"
@@ -158,7 +159,7 @@
                                     </GridViewColumnHeader>
                                 </GridViewColumn>
                                 <GridViewColumn  Width="280" 
-                                            DisplayMemberBinding="{Binding Model.CurrentPrice}">
+                                            DisplayMemberBinding="{Binding StringFormat = {}{0}$, Path=Model.CurrentPrice}">
                                     <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left"   IsHitTestVisible="False">
                                         Current price
                                     </GridViewColumnHeader>

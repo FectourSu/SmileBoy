@@ -1,8 +1,6 @@
 ﻿using SmileBoyClient.Command;
 using SmileBoyClient.Core.IContract.IProviders;
-using SmileBoyClient.Helpers;
 using SmileBoyClient.Navigation;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -61,7 +59,7 @@ namespace SmileBoyClient.ViewModels
                 return;
             }
 
-            _navigationPage.NavigateTo(PageHelper.MainPage);
+            _navigationPage.NavigateTo(ViewPageLocator.MainPage);
         }
     }
 }

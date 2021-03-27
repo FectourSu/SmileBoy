@@ -51,7 +51,7 @@ namespace SmileBoyClient.ViewModels
             }
             catch (Exception)
             {
-                IsValid = true;
+                IsValid = false;
                 throw;
             }
         }

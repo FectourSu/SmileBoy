@@ -1,6 +1,4 @@
-﻿using SmileBoyClient.Command;
-using SmileBoyClient.Core.IContract.IProviders;
-using SmileBoyClient.Helpers;
+﻿using SmileBoyClient.Core.IContract.IProviders;
 using SmileBoyClient.Navigation;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -22,14 +20,14 @@ namespace SmileBoyClient.ViewModels
             get { return _currentPage; }
             set { Set(ref _currentPage, value); }
         }
-        
+
         public MainWindowViewModel(IAuthoriazationProvider authoriazationProvider, NavigationPageService pageService)
         {
 
             _authorizationProvider = authoriazationProvider;
 
             _pageService = pageService;
-            
+
             _pageService.OnPageChanged += (page) => CurrentPage = page;
 
             //progress session logic, but this code need refactoring
@@ -37,9 +35,9 @@ namespace SmileBoyClient.ViewModels
             _authorizationProvider.ExtendSession();
 
             if (state.IsAuthentication)
-                _pageService.NavigateTo(PageHelper.MainPage);
+                _pageService.NavigateTo(ViewPageLocator.MainPage);
             else
-                pageService.NavigateTo(PageHelper.LoginPage);
+                pageService.NavigateTo(ViewPageLocator.LoginPage);
         }
     }
 }
