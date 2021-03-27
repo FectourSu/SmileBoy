@@ -17,8 +17,8 @@
 * [x] Create Identity Server
 * [ ] Adding modal windows for each entity
 * [ ] Add tables on the view
-* [ ] Add pagination 
-* [ ] Adding validation for fields on the view
+* [x] Add pagination 
+* [x] Adding validation for fields on the view
 * [ ] Add the resulting charts (LiveCharts)
 
 <img align="right" src="https://lh3.googleusercontent.com/pw/ACtC-3eAt5FymLvgA2rkopOHIjtNNJPn39X-uYDXACqyWwSuh4lmipBDSEtfGNSIkwKyp5qlrsgai1ZoXyezgSJ_Eq64qqYeH-dlmwbiIix1BaPey9t9s3ZPBrJBGYkxlqiOMSMpCHSebM-TIxUA_thraDLV=w319-h331-no?authuser=0" width="100" height="100">
