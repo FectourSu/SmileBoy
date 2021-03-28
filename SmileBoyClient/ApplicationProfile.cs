@@ -2,7 +2,7 @@
 using SmileBoy.Client.Entities;
 using SmileBoyClient.Core.Entites;
 
-namespace SmileBoy.Client.Core
+namespace SmileBoyClient
 {
     public class ApplicationProfile : Profile
     {

@@ -18,7 +18,7 @@ namespace SmileBoy.Client.BL.Services
         /// <summary>
         /// Buisness logic accessing data via mapping
         /// </summary>
-        
+
         private readonly IRepository<Product, Guid> _repository;
         private readonly IMapper _mapper;
 
@@ -73,6 +73,11 @@ namespace SmileBoy.Client.BL.Services
         public async Task<long> CountAsync()
         {
             return await _repository.CountAsync();
+        }
+
+        public async Task<ProductDto> SingleOrDefaultAsync(Guid id)
+        {
+            return _mapper.Map<ProductDto>(await _repository.GetByIdAsync(id));
         }
     }
 }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace SmileBoyClient.Core.IContract.IService
 {
-    public interface IProductService : ICrudService<ProductDto, Guid>
+    public interface IProductService : IOperationBase<ProductDto, Guid>
     {
+        Task<ProductDto> SingleOrDefaultAsync(Guid id);
         Task<long> CountAsync();
     }
 }

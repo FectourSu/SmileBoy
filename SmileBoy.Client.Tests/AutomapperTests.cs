@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SmileBoy.Client.Core;
+using SmileBoyClient;
 using Xunit;
 
 namespace SmileBoy.Client.Tests

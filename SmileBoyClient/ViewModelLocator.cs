@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SmileBoy.Client.BL.Services;
+using SmileBoy.Client.Core.IContract;
+using SmileBoy.Client.Core.Managers;
 using SmileBoy.Client.Core.Providers;
 using SmileBoy.Client.Core.Services;
 using SmileBoyClient.Core;
@@ -61,6 +63,9 @@ namespace SmileBoyClient
             //Services
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IDialogService, DialogService>();
+
+            //Managers
+            services.AddScoped<IProductManager, ProductManager>();
 
             //Data
             services.AddMongoProvider();

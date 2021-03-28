@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace SmileBoyClient.Core.IContract.IService
 {
-    public interface ICrudService<TModel, TKey>
+    public interface IOperationBase<TModel, TKey>
         where TModel : IModel
     {
         Task<PaginationResult<TModel>> GetAll(int page, int pageSize, string filter = null);
