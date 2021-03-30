@@ -1,4 +1,5 @@
-﻿using SmileBoyClient.Core.Entites;
+﻿using SmileBoy.Client.Core.Dto;
+using SmileBoyClient.Core.Entites;
 using SmileBoyClient.ViewModels;
 using SmileBoyClient.ViewModels.Dialogs;
 using SmileBoyClient.Views.Dialogs;
@@ -14,6 +15,9 @@ namespace SmileBoyClient
             {
                 AddDialogViewModel<ProductDto> => new AddDialog(),
                 UpdateDialogViewModel<ProductDto> => new UpdateDialog(),
+
+                AddDialogViewModel<CustomerDto> => new AddDialog(),
+                UpdateDialogViewModel<CustomerDto> => new UpdateDialog(),
 
                 _ => throw new NotImplementedException(),
             };

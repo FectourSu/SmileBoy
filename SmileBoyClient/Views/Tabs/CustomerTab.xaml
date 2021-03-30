@@ -3,15 +3,217 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:SmileBoyClient.Views.Tabs"
+      xmlns:local="clr-namespace:SmileBoyClient.Views.Tabs" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+      xmlns:smileboy="clr-namespace:SmileBoyClient.Converter"
+      xmlns:local1="clr-namespace:SmileBoyClient.Views.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CustomerTab"
       DataContext="{Binding CustomerTab, Source={StaticResource ViewModelLocator}}">
 
+
+    <Page.Resources>
+        <smileboy:ImageConverter x:Key="ImageConverter"/>
+    </Page.Resources>
+
     <Grid>
-        <TextBlock Text="Customer"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+        <Border Background="#F5F3FB" Margin="60,60,60,10" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition MinHeight="360"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <materialDesign:TransitioningContent OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.15}">
+                    <materialDesign:TransitioningContent.OpeningEffects>
+                        <materialDesign:TransitionEffect Kind="SlideInFromLeft" />
+                    </materialDesign:TransitioningContent.OpeningEffects>
+
+                    <TextBlock Text="CUSTOMERS"
+                               FontSize="18"
+                               FontFamily="{StaticResource MontserratBold}"
+                               Margin="25,35,0,10"
+                               Foreground="#525252"
+                               HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+                </materialDesign:TransitioningContent>
+
+                <StackPanel Orientation="Horizontal" Margin="0 5 0 0"
+                            HorizontalAlignment="Right" Grid.Column="1">
+
+                    <Button Command="{Binding DeleteManyCommand}"
+                            Style="{DynamicResource MaterialDesignToolButton}"
+                            Margin="0 0 5 0">
+                        <materialDesign:PackIcon Kind="AccountRemove" />
+                    </Button>
+
+                    <Button Command="{Binding AddCommand}"
+                            Style="{DynamicResource MaterialDesignToolButton}"
+                            Margin="0 0 5 0">
+                        <materialDesign:PackIcon Kind="PersonAddOutline" />
+                    </Button>
+
+                    <Button Style="{DynamicResource MaterialDesignToolButton}"
+                            Command="{Binding RefreshCommand}">
+                        <materialDesign:PackIcon Kind="Refresh"/>
+                    </Button>
+
+                    <materialDesign:ColorZone Background="White"
+                                              VerticalAlignment="Center"
+                                              BorderThickness="0"
+                                              BorderBrush="#C4C4C4"
+                                              Padding="8 0"
+                                              FontSize="12"
+                                              CornerRadius="8"
+                                              Height="40"
+                                              FontFamily="{StaticResource RobotoLight}"
+                                              Margin="16 0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button Style="{DynamicResource MaterialDesignToolButton}"
+                                    Command="{Binding SearchCommand}">
+                                <materialDesign:PackIcon Kind="Magnify"
+                                                         Opacity=".56" />
+                            </Button>
+                            <TextBox 
+                                     Grid.Column="1"
+                                     Text="{Binding Filter}"
+                                     Margin="8 0 0 0"
+                                     materialDesign:HintAssist.Hint="Search"
+                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                     BorderThickness="0"
+                                     
+                                     MinWidth="200"
+                                     VerticalAlignment="Center">
+                            </TextBox>
+                        </Grid>
+                    </materialDesign:ColorZone>
+                </StackPanel>
+                <materialDesign:TransitioningContent Grid.Row="1" Grid.ColumnSpan="2" OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:1.15}">
+                    <materialDesign:TransitioningContent.OpeningEffects>
+                        <materialDesign:TransitionEffect Kind="SlideInFromBottom" />
+                    </materialDesign:TransitioningContent.OpeningEffects>
+                    <ListView BorderBrush="Transparent" BorderThickness="0"
+                          x:Name="lvCustomers"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ItemsSource="{Binding ListItems, Mode=TwoWay}"
+                          ItemContainerStyle="{StaticResource DisableHover}" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="50">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding Check, UpdateSourceTrigger=PropertyChanged}"
+                                                  Background="#ca3e47">
+                                                <CheckBox.LayoutTransform>
+                                                    <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                                </CheckBox.LayoutTransform>
+                                            </CheckBox>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                    <GridViewColumnHeader Padding="4">
+                                        <CheckBox Command="{Binding CheckAllCommand}"
+                                              IsChecked="{Binding IsCheckAll, UpdateSourceTrigger=PropertyChanged}"
+                                              Background="#ca3e47">
+                                            <CheckBox.LayoutTransform>
+                                                <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                            </CheckBox.LayoutTransform>
+                                        </CheckBox>
+                                    </GridViewColumnHeader>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="200">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <materialDesign:Chip Command="{Binding DataContext.UpdateCommand, 
+                                            ElementName=lvCustomers}"
+                                                             CommandParameter="{Binding Model.Id}"
+                                                             IconBackground="Transparent"
+                                                             Background="Transparent"
+                                                             Content="{Binding Model.Name}">
+                                                <materialDesign:Chip.Icon>
+                                                    <Image Width="42"
+                                                       Height="42"
+                                                       HorizontalAlignment="Center"
+                                                       Source="{Binding Model.Img,
+                                                                Converter={StaticResource ImageConverter}}"/>
+                                                </materialDesign:Chip.Icon>
+                                            </materialDesign:Chip>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                    <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" HorizontalAlignment="Left" IsHitTestVisible="False">
+                                        Name
+                                    </GridViewColumnHeader>
+                                </GridViewColumn>
+
+                                <GridViewColumn DisplayMemberBinding="{Binding Model.Email}"
+                                             Width="200" >
+                                    <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left"  IsHitTestVisible="False">
+                                        Email
+                                    </GridViewColumnHeader>
+                                </GridViewColumn>
+                                <GridViewColumn  Width="200" 
+                                            DisplayMemberBinding="{Binding Model.Phone}">
+                                    <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left"   IsHitTestVisible="False">
+                                       Phone
+                                    </GridViewColumnHeader>
+                                </GridViewColumn>
+
+                                <GridViewColumn  Width="190" 
+                                            DisplayMemberBinding="{Binding Model.Address}">
+                                    <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left"   IsHitTestVisible="False">
+                                        Address
+                                    </GridViewColumnHeader>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="100">
+                                    <GridViewColumnHeader IsHitTestVisible="False">
+                                    </GridViewColumnHeader>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" 
+                                                                 StaysOpen="False">
+                                                <materialDesign:PopupBox.ToggleContent>
+                                                    <materialDesign:PackIcon Kind="DotsHorizontal" />
+                                                </materialDesign:PopupBox.ToggleContent>
+                                                <StackPanel Width="150">
+                                                    <Button FontWeight="Regular"
+                                                        Command="{Binding DataContext.UpdateCommand, 
+                                                        ElementName=lvCustomers}"
+                                                        CommandParameter="{Binding Model.Id}">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="Edit"/>
+                                                        </StackPanel>
+                                                    </Button>
+                                                    <Button FontWeight="Regular"
+                                                        Command="{Binding DataContext.DeleteCommand, ElementName=lvCustomers}"
+                                                        CommandParameter="{Binding Model.Id}">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="Delete"/>
+                                                        </StackPanel>
+                                                    </Button>
+                                                </StackPanel>
+                                            </materialDesign:PopupBox>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </materialDesign:TransitioningContent>
+                <StackPanel Grid.Row="2" Margin="25,25,25,0"
+                            Orientation="Horizontal" HorizontalAlignment="Right" Grid.ColumnSpan="2">
+                    <local1:PaginationControl DataContext="{Binding Pagination}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

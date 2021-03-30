@@ -12,12 +12,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
         <TextBlock Foreground="#2d2d2d" VerticalAlignment="Center" FontSize="22" HorizontalAlignment="Center" FontFamily="{StaticResource MontserratBold}">
                     ADD DATA
         <materialDesign:PackIcon Kind="Pen"></materialDesign:PackIcon>
@@ -35,7 +34,7 @@
                           Width="15"/>
         </Button>
 
-        <StackPanel Grid.Row="3" Margin="25 10">
+        <StackPanel Grid.Row="2" Margin="25 10">
             <ItemsControl ItemsSource="{Binding SomeCollection}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -55,7 +54,7 @@
 
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center"
-                    Grid.Row="5">
+                    Grid.Row="3">
             <Button Style="{StaticResource ButtonHover}"
                                 Command="{Binding AddCommand}"
                                 materialDesign:ButtonAssist.CornerRadius="0"

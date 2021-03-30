@@ -40,9 +40,9 @@ namespace SmileBoy.Client.BL.Services
         /// <param name="pageSize">Number of entries per page</param>
         /// <param name="search">Search filter</param>
         /// <returns></returns>
-        public async Task<PaginationResult<ProductDto>> GetAll(int page, int pageSize, string search = null)
+        public async Task<PaginationResult<ProductDto>> GetAll(int page, int pageSize, string filter = null)
         {
-            var entites = string.IsNullOrEmpty(search) ? _repository.GetAll() : await _repository.SearchAsync(search);
+            var entites = string.IsNullOrEmpty(filter) ? _repository.GetAll() : await _repository.SearchAsync(filter);
 
             return new PaginationResult<ProductDto>
             {
