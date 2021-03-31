@@ -8,7 +8,6 @@
       xmlns:smileboy="clr-namespace:SmileBoyClient.Converter"
       xmlns:local1="clr-namespace:SmileBoyClient.Views.Controls"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
       Title="CustomerTab"
       DataContext="{Binding CustomerTab, Source={StaticResource ViewModelLocator}}">
 

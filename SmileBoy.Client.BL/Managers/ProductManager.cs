@@ -35,7 +35,7 @@ namespace SmileBoy.Client.Core.Managers
         }
 
         public async Task<PaginationResult<ProductDto>> GetAll(int page, int pageSize, string filter = null) =>
-            await _productService.GetAll(page, pageSize, filter);
+            await _productService. GetAll(page, pageSize, filter);
 
         public async Task<ProductDto> GetByIdAsync(Guid id) =>
             await _productService.GetByIdAsync(id);

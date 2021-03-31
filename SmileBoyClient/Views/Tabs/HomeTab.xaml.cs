@@ -1,4 +1,8 @@
-﻿using System.Windows.Controls;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using System.Drawing;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace SmileBoyClient.Views.Tabs
 {

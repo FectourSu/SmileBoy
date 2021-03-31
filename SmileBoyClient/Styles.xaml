@@ -150,7 +150,7 @@
                      Value="True">
                 <Setter Property="BitmapEffect">
                     <Setter.Value>
-                        <DropShadowBitmapEffect ShadowDepth="2" Opacity="0.3" Color="LightGray" />
+                        <DropShadowBitmapEffect  Opacity=".1" ShadowDepth="5" />
                     </Setter.Value>
                 </Setter>
                 <Setter Property="Background" 

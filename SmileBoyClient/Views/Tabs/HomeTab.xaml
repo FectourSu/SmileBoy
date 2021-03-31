@@ -5,19 +5,69 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SmileBoyClient.Views.Tabs"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      xmlns:system="clr-namespace:System;assembly=mscorlib"
+      xmlns:system="clr-namespace:System;assembly=mscorlib" 
+      xmlns:local1="clr-namespace:SmileBoyClient.Views.Controls"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
       Title="HomeTab"
       DataContext="{Binding HomeTab, Source={StaticResource ViewModelLocator}}">
     <Page.Resources>
-
     </Page.Resources>
-    <Grid>
-        <Grid>
-            <TextBlock Text="Home"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+
+    <Grid Width="900">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="350"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Margin="0 60 0 0" Grid.Column="0" Background="White" CornerRadius="5"
+                Width="285" Height="160" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="30" Direction="-90" RenderingBias="Quality" Opacity=".1" ShadowDepth="5"/>
+                </Border.Effect>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock HorizontalAlignment="Center" FontFamily="{StaticResource MontserratRegular}"
+                           FontSize="30" Foreground="#2d2d2d">1200,03$</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" Margin="0 5 0 0" FontFamily="{StaticResource MontserratRegular}" 
+                           Foreground="#525252">Total sum</TextBlock>
+                </StackPanel>
+            </Border>
+            <Border Margin="0 60 0 0" Grid.Column="1" Background="White" CornerRadius="5"
+                 Width="285" Height="160" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="30" Direction="-90" RenderingBias="Quality" Opacity=".1" ShadowDepth="5"/>
+                </Border.Effect>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock HorizontalAlignment="Center" FontFamily="{StaticResource MontserratRegular}"
+                           FontSize="30" Foreground="#2d2d2d">1200,03$</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" Margin="0 5 0 0" FontFamily="{StaticResource MontserratRegular}" 
+                           Foreground="#525252">Total sum</TextBlock>
+                </StackPanel>
+            </Border>
+            <Border Margin="0 60 0 0" Grid.Column="3" Background="#2d2d2d" CornerRadius="5"
+                  Width="300" Height="160" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="30" Direction="-90" RenderingBias="Quality" Opacity=".1" ShadowDepth="5"/>
+                </Border.Effect>
+                <local1:Statistics HorizontalAlignment="Center"  VerticalAlignment="Center" Height="222" Width="300"></local1:Statistics>
+            </Border>
         </Grid>
+        <Border Grid.Row="1" Padding="20" Background="White" CornerRadius="5" Width="900" Height="300" Margin="0 0 0 30"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Direction="-90" RenderingBias="Quality" Opacity=".1" ShadowDepth="5"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Margin="0 0 0 20" Foreground="#9d9d9d" Width="auto"
+                           FontFamily="{StaticResource RobotoMedium}" FontSize="14">Product sale statistics</TextBlock>
+                <local1:Graphic></local1:Graphic>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>
