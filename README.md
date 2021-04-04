@@ -10,7 +10,7 @@
 * [x]  Creating entities(classes) and configuring entities
     * [x] Products
     * [ ] Order
-    * [ ] Customer
+    * [x] Customer
 * [x] Creating a MongoDB database and connecting to it
 * [x] Creating ViewModels for entities and configuring mapping (Automapper)
 * [x] Add XUnit tests
@@ -19,6 +19,6 @@
 * [ ] Add tables on the view
 * [x] Add pagination 
 * [x] Adding validation for fields on the view
-* [ ] Add the resulting charts (LiveCharts)
+* [x] Add the resulting charts (LiveCharts)
 
 <img align="right" src="https://lh3.googleusercontent.com/pw/ACtC-3eAt5FymLvgA2rkopOHIjtNNJPn39X-uYDXACqyWwSuh4lmipBDSEtfGNSIkwKyp5qlrsgai1ZoXyezgSJ_Eq64qqYeH-dlmwbiIix1BaPey9t9s3ZPBrJBGYkxlqiOMSMpCHSebM-TIxUA_thraDLV=w319-h331-no?authuser=0" width="100" height="100">
