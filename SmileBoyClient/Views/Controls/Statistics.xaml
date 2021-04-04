@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              
-             xmlns:local="clr-namespace:SmileBoyClient.Views.Controls" xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:local="clr-namespace:SmileBoyClient.Views.Controls" xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -38,43 +38,43 @@
             <lvc:CartesianChart.VisualElements>
                 <lvc:VisualElement X="0.75" Y="120" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                     <lvc:VisualElement.UIElement>
-                        <StackPanel Orientation="Vertical" Margin="0 20 0 0">
-                            <Image Source="resources/user.png"></Image>
-                            <TextBlock Foreground="White" FontSize="10" >LOADED</TextBlock>
+                        <StackPanel Orientation="Vertical" Margin="3 10 0 0">
+                            <materialDesign:PackIcon Kind="StarRate" Margin="0 0 0 5" HorizontalAlignment="Center"  Foreground="White"/>
+                            <TextBlock Foreground="White" FontSize="10" FontFamily="{StaticResource MontserratThin}">SUCCESSFULL</TextBlock>
                         </StackPanel>
                     </lvc:VisualElement.UIElement>
                 </lvc:VisualElement>
                 <lvc:VisualElement X="0.75" Y="0" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <lvc:VisualElement.UIElement>
-                        <TextBlock Foreground="White" FontSize="20">100 %</TextBlock>
+                        <TextBlock Foreground="White" FontSize="20" FontFamily="{StaticResource MontserratRegular}">1930</TextBlock>
                     </lvc:VisualElement.UIElement>
                 </lvc:VisualElement>
 
                 <lvc:VisualElement X="2.5" Y="120" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                     <lvc:VisualElement.UIElement>
-                        <StackPanel Orientation="Vertical" Margin="0 20 0 0">
-                            <Image Source="resources/view.png"></Image>
-                            <TextBlock Foreground="White" FontSize="10" >SAW THE AD</TextBlock>
+                        <StackPanel Orientation="Vertical" Margin="0 10 0 0">
+                            <materialDesign:PackIcon Margin="0 0 0 5" Kind="Dropbox" HorizontalAlignment="Center"  Foreground="White"/>
+                            <TextBlock Foreground="White" FontSize="10" FontFamily="{StaticResource MontserratThin}">ORDERS NOW</TextBlock>
                         </StackPanel>
                     </lvc:VisualElement.UIElement>
                 </lvc:VisualElement>
                 <lvc:VisualElement X="2.5" Y="0" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <lvc:VisualElement.UIElement>
-                        <TextBlock Foreground="White" FontSize="20">50 %</TextBlock>
+                        <TextBlock Foreground="White" FontSize="20" FontFamily="{StaticResource MontserratRegular}">150</TextBlock>
                     </lvc:VisualElement.UIElement>
                 </lvc:VisualElement>
 
                 <lvc:VisualElement X="4.25" Y="120" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                     <lvc:VisualElement.UIElement>
-                        <StackPanel Orientation="Vertical" Margin="0 20 0 0">
-                            <Image Source="resources/fingerprint.png"></Image>
-                            <TextBlock Foreground="White" FontSize="10">INTERACTED</TextBlock>
+                        <StackPanel Orientation="Vertical" Margin="0 10 0 0">
+                            <materialDesign:PackIcon Margin="0 0 0 5" Kind="Arrow" HorizontalAlignment="Center"  Foreground="White"/>
+                            <TextBlock Foreground="White" FontSize="10" FontFamily="{StaticResource MontserratThin}">REFUNDS</TextBlock>
                         </StackPanel>
                     </lvc:VisualElement.UIElement>
                 </lvc:VisualElement>
                 <lvc:VisualElement X="4.25" Y="0" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <lvc:VisualElement.UIElement>
-                        <TextBlock Foreground="White" FontSize="20">5 %</TextBlock>
+                        <TextBlock Foreground="White" FontSize="20" FontFamily="{StaticResource MontserratRegular}">5</TextBlock>
                     </lvc:VisualElement.UIElement>
                 </lvc:VisualElement>
             </lvc:CartesianChart.VisualElements>

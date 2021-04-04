@@ -14,60 +14,215 @@
     <Page.Resources>
     </Page.Resources>
 
-    <Grid Width="900">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="350"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="300"/>
-            </Grid.ColumnDefinitions>
+    <materialDesign:TransitioningContent 
+            OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.3}">
+        <materialDesign:TransitioningContent.OpeningEffects>
+            <materialDesign:TransitionEffect Kind="ExpandIn" />
+        </materialDesign:TransitioningContent.OpeningEffects>
+        <Grid Width="900">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="350"></RowDefinition>
+            </Grid.RowDefinitions>
 
-            <Border Margin="0 60 0 0" Grid.Column="0" Background="White" CornerRadius="5"
-                Width="285" Height="160" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="300"/>
+                </Grid.ColumnDefinitions>
+                <Border Margin="0 60 0 0" Grid.Column="0" Background="White" CornerRadius="5"
+                Width="285" Height="180" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="30" Direction="-90" 
+                                      RenderingBias="Quality" Opacity=".1" ShadowDepth="5"/>
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition MaxHeight="30"></RowDefinition>
+                            <RowDefinition MinHeight="80"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <materialDesign:PopupBox Margin="10 0"  Grid.Row="0" HorizontalAlignment="Right"
+                                             PlacementMode="BottomAndAlignRightEdges" 
+                                                                 StaysOpen="False">
+                            <materialDesign:PopupBox.ToggleContent>
+                                <materialDesign:PackIcon Kind="DotsHorizontal" Foreground="Gray" />
+                            </materialDesign:PopupBox.ToggleContent>
+                        </materialDesign:PopupBox>
+                        <StackPanel  
+                                Grid.Row="1" HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
+                            <TextBlock HorizontalAlignment="Center" 
+                                   FontFamily="{StaticResource MontserratRegular}"
+                               FontSize="30" Foreground="#2d2d2d">$12,250</TextBlock>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
+                                    HorizontalAlignment="Center">
+                                <TextBlock FontSize="8" 
+                                   Margin="0 5 5 0" FontFamily="{StaticResource MontserratRegular}" 
+                                   Foreground="Gray">TOTAL REVENUE
+                                </TextBlock>
+                                <materialDesign:PackIcon Kind="OpenInNew" Margin="0 1.3" Foreground="Gray" Width="11"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Margin="0 5 0 0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock HorizontalAlignment="Center" FontSize="8" 
+                                           Margin="0 5 0 0" FontFamily="{StaticResource MontserratRegular}" 
+                               Foreground="Gray">PROFIT</TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" Margin="0 5 0 0" 
+                                           FontFamily="{StaticResource MontserratRegular}" 
+                               Foreground="#2d2d2d">$2,512</TextBlock>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock HorizontalAlignment="Center" FontSize="8" 
+                                           Margin="0 5 0 0" FontFamily="{StaticResource MontserratRegular}" 
+                               Foreground="Gray">INVESTMENT</TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" Margin="0 5 0 0" 
+                                           FontFamily="{StaticResource MontserratRegular}" 
+                               Foreground="#2d2d2d">$10,200</TextBlock>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock HorizontalAlignment="Center" FontSize="8" 
+                                           Margin="0 5 0 0" FontFamily="{StaticResource MontserratRegular}" 
+                               Foreground="Gray">PROFITS</TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" Margin="0 5 0 0" 
+                                           FontFamily="{StaticResource MontserratRegular}" 
+                               Foreground="#2d2d2d">12%</TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Margin="0 60 0 0" Grid.Column="1" Background="White" CornerRadius="5"
+                 Width="285" Height="180" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="30" Direction="-90" 
+                                      RenderingBias="Quality" Opacity=".1" ShadowDepth="5"/>
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition MaxHeight="30"></RowDefinition>
+                            <RowDefinition MinHeight="80"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <materialDesign:PopupBox Margin="10 0"  Grid.Row="0" HorizontalAlignment="Right"
+                                             PlacementMode="BottomAndAlignRightEdges" 
+                                                                 StaysOpen="False">
+                            <materialDesign:PopupBox.ToggleContent>
+                                <materialDesign:PackIcon Kind="DotsHorizontal" Foreground="Gray" />
+                            </materialDesign:PopupBox.ToggleContent>
+                        </materialDesign:PopupBox>
+                        <StackPanel  
+                                Grid.Row="1" HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
+                            <TextBlock HorizontalAlignment="Center" 
+                                   FontFamily="{StaticResource MontserratRegular}"
+                               FontSize="30" Foreground="#2d2d2d">2,228</TextBlock>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" 
+                                    HorizontalAlignment="Center">
+                                <TextBlock FontSize="8" 
+                                   Margin="0 5 5 0" FontFamily="{StaticResource MontserratRegular}" 
+                                   Foreground="Gray">TOTAL ORDERS
+                                </TextBlock>
+                                <materialDesign:PackIcon Kind="OpenInNew" Margin="0 1.3" Foreground="Gray" Width="11"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Margin="0 5 0 0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock HorizontalAlignment="Center" FontSize="8" 
+                                           Margin="0 5 0 0" FontFamily="{StaticResource MontserratRegular}" 
+                               Foreground="Gray">TODAY</TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" Margin="0 5 0 0" 
+                                           FontFamily="{StaticResource MontserratRegular}" 
+                               Foreground="#2d2d2d">311</TextBlock>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock HorizontalAlignment="Center" FontSize="8" 
+                                           Margin="0 5 0 0" FontFamily="{StaticResource MontserratRegular}" 
+                               Foreground="Gray">PENDING</TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" Margin="0 5 0 0" 
+                                           FontFamily="{StaticResource MontserratRegular}" 
+                               Foreground="#2d2d2d">2028</TextBlock>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock HorizontalAlignment="Center" FontSize="8" 
+                                           Margin="0 5 0 0" FontFamily="{StaticResource MontserratRegular}" 
+                               Foreground="Gray">SHIPPED</TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" Margin="0 5 0 0" 
+                                           FontFamily="{StaticResource MontserratRegular}" 
+                               Foreground="#2d2d2d">200</TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Border Margin="0 60 0 0" Grid.Column="3" Background="#2d2d2d" CornerRadius="5"
+                  Width="300" Height="180" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="30" Direction="-90" 
+                                      RenderingBias="Quality" Opacity=".1" ShadowDepth="5"/>
+                    </Border.Effect>
+                    <local1:Statistics HorizontalAlignment="Center"  
+                                   VerticalAlignment="Center" Height="222" Width="300"></local1:Statistics>
+                </Border>
+            </Grid>
+
+            <!--Graphic-->
+            <Border Grid.Row="1" Padding="20" Background="White" 
+                CornerRadius="5" Width="900" Height="300" Margin="0 0 0 30"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="30" Direction="-90" RenderingBias="Quality" Opacity=".1" ShadowDepth="5"/>
+                    <DropShadowEffect BlurRadius="30" Direction="-90" 
+                                  RenderingBias="Quality" Opacity=".1" ShadowDepth="5"/>
                 </Border.Effect>
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock HorizontalAlignment="Center" FontFamily="{StaticResource MontserratRegular}"
-                           FontSize="30" Foreground="#2d2d2d">1200,03$</TextBlock>
-                    <TextBlock HorizontalAlignment="Center" Margin="0 5 0 0" FontFamily="{StaticResource MontserratRegular}" 
-                           Foreground="#525252">Total sum</TextBlock>
+                <StackPanel>
+                    <Grid Margin="0 0 0 20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Product sale statistics"
+                           FontFamily="{StaticResource RobotoRegular}"
+                           FontSize="14"
+                           FontWeight="Medium"
+                           Foreground="#727272"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"/>
+
+                        <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                            <Button Command="{Binding LoadCommand}"
+                            Style="{DynamicResource MaterialDesignToolButton}"
+                            Margin="0 0 5 0">
+                                <materialDesign:PackIcon Kind="CloudPrintOutline"/>
+                            </Button>
+
+                            <Button Command="{Binding RefreshCommand}"
+                            Style="{DynamicResource MaterialDesignToolButton}"
+                            Margin="0 0 5 0">
+                                <materialDesign:PackIcon Kind="Refresh"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                    <local1:Graphic></local1:Graphic>
                 </StackPanel>
-            </Border>
-            <Border Margin="0 60 0 0" Grid.Column="1" Background="White" CornerRadius="5"
-                 Width="285" Height="160" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="30" Direction="-90" RenderingBias="Quality" Opacity=".1" ShadowDepth="5"/>
-                </Border.Effect>
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock HorizontalAlignment="Center" FontFamily="{StaticResource MontserratRegular}"
-                           FontSize="30" Foreground="#2d2d2d">1200,03$</TextBlock>
-                    <TextBlock HorizontalAlignment="Center" Margin="0 5 0 0" FontFamily="{StaticResource MontserratRegular}" 
-                           Foreground="#525252">Total sum</TextBlock>
-                </StackPanel>
-            </Border>
-            <Border Margin="0 60 0 0" Grid.Column="3" Background="#2d2d2d" CornerRadius="5"
-                  Width="300" Height="160" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="30" Direction="-90" RenderingBias="Quality" Opacity=".1" ShadowDepth="5"/>
-                </Border.Effect>
-                <local1:Statistics HorizontalAlignment="Center"  VerticalAlignment="Center" Height="222" Width="300"></local1:Statistics>
             </Border>
         </Grid>
-        <Border Grid.Row="1" Padding="20" Background="White" CornerRadius="5" Width="900" Height="300" Margin="0 0 0 30"
-                HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="30" Direction="-90" RenderingBias="Quality" Opacity=".1" ShadowDepth="5"/>
-            </Border.Effect>
-            <StackPanel>
-                <TextBlock Margin="0 0 0 20" Foreground="#9d9d9d" Width="auto"
-                           FontFamily="{StaticResource RobotoMedium}" FontSize="14">Product sale statistics</TextBlock>
-                <local1:Graphic></local1:Graphic>
-            </StackPanel>
-        </Border>
-    </Grid>
+    </materialDesign:TransitioningContent>
 </Page>

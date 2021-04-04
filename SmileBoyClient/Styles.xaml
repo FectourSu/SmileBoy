@@ -179,4 +179,31 @@
         <Setter Property="FontSize" Value="12"></Setter>
         <Setter Property="FontWeight" Value="Regular"></Setter>
     </Style>
+
+
+
+
+
+    <Style x:Key="UndrlButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignToolButton}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock TextDecorations="Underline" Text="{TemplateBinding Content}"/>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="False">
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock Text="{TemplateBinding Content}"/>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

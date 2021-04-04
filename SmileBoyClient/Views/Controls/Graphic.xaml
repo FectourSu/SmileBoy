@@ -7,6 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="700">
     <lvc:CartesianChart Height="228"  Series="{Binding Series}">
+        <lvc:CartesianChart.AxisX>
+            <lvc:WindowAxis></lvc:WindowAxis>
+        </lvc:CartesianChart.AxisX>
         <lvc:CartesianChart.SeriesColors>
             <lvc:ColorsCollection>
                 <Color>#E85270</Color>
