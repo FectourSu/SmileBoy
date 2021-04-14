@@ -2,6 +2,8 @@
 using SmileBoyClient.Core.IContract;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading;
 using DisplayAttribute = SmileBoy.Client.Core.Attributes.DisplayAttribute;
 
 namespace SmileBoyClient.Core.Entites
@@ -23,5 +25,28 @@ namespace SmileBoyClient.Core.Entites
 
         [Display("Image")]
         public string Img { get; set; }
+
+        //generate random product code
+        private int? _productCode;
+
+        [DisplayIgnore]
+        public int? ProductCode
+        {
+            get 
+            {
+                if (_productCode is null) 
+                    _productCode = GenerateNumber();
+
+                return _productCode;
+            }
+            set 
+            {
+                _productCode = value;
+            }
+        }
+
+        private int GenerateNumber() =>
+            int.Parse(string.Join("", Enumerable.Range(0, 6).Select(i => new Random().Next(1, 10))));
+
     }
 }

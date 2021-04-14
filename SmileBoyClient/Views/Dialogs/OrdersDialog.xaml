@@ -1,0 +1,257 @@
+﻿<UserControl x:Class="SmileBoyClient.Views.Dialogs.OrdersDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SmileBoyClient.Views.Dialogs" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:domain="clr-namespace:SmileBoyClient.Helpers"
+
+             xmlns:smileboy="clr-namespace:SmileBoyClient.Converter"
+             mc:Ignorable="d" 
+            d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <smileboy:ImageConverter x:Key="ImageConverter"/>
+    </UserControl.Resources>
+
+    <Grid Background="#F5F3FB">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="200"></RowDefinition>
+                    <RowDefinition MaxHeight="100"></RowDefinition>
+                    <RowDefinition MinHeight="90"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                Margin=" 10 5"
+                HorizontalAlignment="Right"
+                Grid.Row="0"
+                Width="30"
+                Height="30"
+                Foreground="Black"
+                Style="{StaticResource MaterialDesignIconButton}">
+                    <materialDesign:PackIcon Kind="Close" 
+                                     Width="15"/>
+                </Button>
+                
+                <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Foreground="#2d2d2d" VerticalAlignment="Center" FontSize="22" 
+                               HorizontalAlignment="Center" FontFamily="{StaticResource MontserratBold}">
+                    ORDERS
+                        <materialDesign:PackIcon Kind="CashRegister" Width="18" Height="18"/>
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 15 0 0"
+                            Grid.Row="2">
+
+                    <TextBox Style="{StaticResource OverTextBox}"
+                                 Text="{Binding Model.Number, ValidatesOnExceptions=True, 
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="15"
+                                 Height="45"
+                                 Width="200"
+                                 materialDesign:HintAssist.Hint="Number" IsReadOnly="True">
+                    </TextBox>
+                    
+                    <DatePicker
+                          x:Name="FutureDatePicker"
+                          Height="45"
+                          Margin="0 30 0 0"
+                        
+                          Width="200"
+                          materialDesign:HintAssist.Hint="New delivery date">
+                              <DatePicker.SelectedDate>
+                              <Binding
+                              Path="Model.DeliveryDate"
+                              UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <domain:Domain x:Name="Domain"/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </DatePicker.SelectedDate>
+                    </DatePicker>
+
+                </StackPanel>
+                 <StackPanel Margin="0 30 0 0" Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                   Foreground="Gray" FontFamily="{StaticResource RobotoLight}" 
+                               FontSize="16"> Summary:
+                        </TextBlock>
+
+                        <TextBlock FontFamily="{StaticResource MontserratBold}" 
+                               Foreground="#E85275"
+                               HorizontalAlignment="Center" Padding="10"
+                               Text="3131.23$ " FontSize="20"></TextBlock>
+                    </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Grid.Row="5">
+                        <Button Style="{StaticResource ButtonHover}"
+                                Command="{Binding UpdateCommand}"
+                                materialDesign:ButtonAssist.CornerRadius="0"
+                                Width="140" Height="40"
+                                Background="#E85275"
+                                Foreground="White"
+                                BorderBrush="Transparent"
+                                IsDefault="True"
+                                materialDesign:ShadowAssist.Darken="False"
+                                Content="Accept"></Button>
+                    </StackPanel>
+            </Grid>
+
+            <Border Background="#2d2d2d"
+                    Grid.Column="0"
+                    Height="490"
+                    Style="{StaticResource BorderHover}">
+
+                <Grid Margin="0 6 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Customers"
+                               FontSize="14"
+                               FontWeight="Medium"
+                               Foreground="#727272"
+                               Margin="25 5"
+                               VerticalAlignment="Bottom"/>
+
+                        <ScrollViewer Margin="10" Grid.Row="1">
+                            <ItemsControl ItemsSource="{Binding Customers}" Grid.IsSharedSizeScope="True" 
+                                  Name="icCustomers">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border x:Name="Border" 
+                                            BorderThickness="0 0 0 1"
+                                            BorderBrush="{DynamicResource MaterialDesignDivider}"
+                                            Padding="8">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox VerticalAlignment="Center" Foreground="White"
+                                                      IsChecked="{Binding Check}" Background="#ca3e47"/>
+                                                <StackPanel Margin="8 0 0 0" Orientation="Horizontal"
+                                                        Grid.Column="1">
+                                                    <materialDesign:Chip Width="150" IconBackground="Transparent"
+                                                                         Background="Transparent"
+                                                                         Foreground="White"
+                                                                         Content="{Binding Model.Name}"
+                                                                         Command="{Binding ClickCommand}">
+                                                        <materialDesign:Chip.Icon>
+                                                            <Image Width="42"
+                                                               Height="42"
+                                                               HorizontalAlignment="Center"
+                                                               Source="{Binding Model.Img,
+                                                                        Converter={StaticResource ImageConverter}}"/>
+                                                        </materialDesign:Chip.Icon>
+                                                    </materialDesign:Chip>
+                                                    <materialDesign:Chip IconBackground="Transparent"
+                                                                         Background="Transparent"
+                                                                         Foreground="White" Width="150"
+                                                                         Content="{Binding Model.Address}"
+                                                                         Command="{Binding ClickCommand}"/>
+                                                    <materialDesign:Chip IconBackground="Transparent"
+                                                                         Background="Transparent"
+                                                                         Foreground="White" Width="150"
+                                                                         Content="{Binding Model.Phone}"
+                                                                         Command="{Binding ClickCommand}"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="95"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Products"
+                               FontSize="14"
+                               FontWeight="Medium"
+                               Foreground="#727272"
+                               Margin="25 5 0 5"
+                               VerticalAlignment="Bottom"/>
+
+                            <Separator Grid.Column="1" Margin="0 4 25 0"
+                                       Background="#E0E0E0"
+                                       Height="0.6"/>
+                        </Grid>
+
+                        <ScrollViewer Margin="10" Grid.Row="1">
+                            <ItemsControl ItemsSource="{Binding Products}" Grid.IsSharedSizeScope="True" Name="icProducts">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border x:Name="Border" 
+                                            BorderThickness="0 0 0 1"
+                                            BorderBrush="{DynamicResource MaterialDesignDivider}"
+                                            Padding="8">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox VerticalAlignment="Center" 
+                                                      IsChecked="{Binding Check}" Background="#7D9AFF"/>
+                                                <StackPanel Margin="8 0 0 0" Orientation="Horizontal"
+                                                        Grid.Column="1">
+                                                    <materialDesign:Chip IconBackground="Transparent"  Width="350"
+                                                                     Background="Transparent" Foreground="White"
+                                                                     Content="{Binding Model.Name}"
+                                                                     Command="{Binding ClickCommand}">
+                                                        <materialDesign:Chip.Icon>
+                                                            <Image Width="42"
+                                                               Height="42"
+                                                               HorizontalAlignment="Center"
+                                                               Source="{Binding Model.Img,
+                                                                        Converter={StaticResource ImageConverter}}"/>
+                                                        </materialDesign:Chip.Icon>
+                                                    </materialDesign:Chip>
+                                                    <TextBlock       Background="Transparent"
+                                                                     Foreground="White"
+                                                     Text="{Binding StringFormat={}{0}$, Path=Model.CurrentPrice}"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

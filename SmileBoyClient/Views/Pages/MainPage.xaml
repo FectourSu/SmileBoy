@@ -195,7 +195,7 @@
                                         </Style>
                                     </Image.Style>
                                 </Image>
-                                <TextBlock Text="Product"
+                                <TextBlock Text="Products"
                                     Margin="38, 0, 0, 0"
                                    Style="{StaticResource MontThin}"/>
                             </StackPanel>
@@ -225,7 +225,7 @@
                                         </Style>
                                     </Image.Style>
                                 </Image>
-                                <TextBlock Text="Customer"
+                                <TextBlock Text="Customers"
                                     Margin="38, 0, 0, 0"
                                    Style="{StaticResource MontThin}"/>
                             </StackPanel>
@@ -254,7 +254,7 @@
                                         </Style>
                                     </Image.Style>
                                 </Image>
-                                <TextBlock Text="Order"
+                                <TextBlock Text="Orders"
                                     Margin="38, 0, 0, 0"
                                    Style="{StaticResource MontThin}"/>
                             </StackPanel>

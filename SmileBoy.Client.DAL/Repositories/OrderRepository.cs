@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SmileBoy.Client.DAL.Repositories
 {
-    public class OrderRepository : Repository<Orders, Guid>, IRepository<Orders, Guid>
+    public class OrderRepository : Repository<Order, Guid>, IRepository<Order, Guid>
     {
         public OrderRepository(IMongoDatabase database)
           : base(database, "Orders", searchable: true)

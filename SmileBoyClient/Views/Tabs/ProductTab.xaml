@@ -46,13 +46,13 @@
                     <Button Command="{Binding DeleteManyCommand}"
                             Style="{DynamicResource MaterialDesignToolButton}"
                             Margin="0 0 5 0">
-                        <materialDesign:PackIcon Kind="Trolley" />
+                        <materialDesign:PackIcon Kind="Cube" />
                     </Button>
 
                     <Button Command="{Binding AddCommand}"
                             Style="{DynamicResource MaterialDesignToolButton}"
                             Margin="0 0 5 0">
-                        <materialDesign:PackIcon Kind="TrolleyPlus"/>
+                        <materialDesign:PackIcon Kind="CubeOutline" />
                     </Button>
 
                     <Button Style="{DynamicResource MaterialDesignToolButton}"
@@ -128,7 +128,7 @@
                                     </GridViewColumnHeader>
                                 </GridViewColumn>
                                 
-                                <GridViewColumn Width="250">
+                                <GridViewColumn Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <materialDesign:Chip Command="{Binding DataContext.UpdateCommand, 
@@ -153,18 +153,26 @@
                                 </GridViewColumn>
 
                                 <GridViewColumn DisplayMemberBinding="{Binding Model.Manufacturer}"
-                                             Width="250" >
+                                             Width="200" >
                                     <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left"  IsHitTestVisible="False">
                                         Manufacturer
                                     </GridViewColumnHeader>
                                 </GridViewColumn>
-                                <GridViewColumn  Width="280" 
+                                
+                                <GridViewColumn  Width="200" 
                                             DisplayMemberBinding="{Binding StringFormat = {}{0}$, Path=Model.CurrentPrice}">
                                     <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left"   IsHitTestVisible="False">
                                         Current price
                                     </GridViewColumnHeader>
                                 </GridViewColumn>
-
+                                
+                                <GridViewColumn  Width="190" 
+                                             DisplayMemberBinding="{Binding Model.ProductCode}">
+                                    <GridViewColumnHeader FontSize="14" FontFamily="{StaticResource RobotoBold}" VerticalAlignment="Center" HorizontalAlignment="Left"   IsHitTestVisible="False">
+                                        Product number
+                                    </GridViewColumnHeader>
+                                </GridViewColumn>
+                                
                                 <GridViewColumn Width="100">
                                     <GridViewColumnHeader IsHitTestVisible="False">
                                     </GridViewColumnHeader>

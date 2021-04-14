@@ -1,4 +1,5 @@
 ﻿using SmileBoy.Client.Core.Dto;
+using SmileBoy.Client.Core.IContract;
 using SmileBoy.Client.Core.IContract.IData;
 using SmileBoy.Client.Core.IContract.IManagers;
 using SmileBoy.Client.Core.IContract.IService;
@@ -14,11 +15,13 @@ namespace SmileBoy.Client.Core.Managers
 {
     public class CustomerManager : ICustomerManager
     {
+        private readonly IReferenceExcludable _excludable;
         private readonly ICustomerService _customerService;
         private readonly IUnitOfWork _unitOfWork;
 
-        public CustomerManager(IUnitOfWork unitOfWork, ICustomerService customerService)
+        public CustomerManager(IUnitOfWork unitOfWork, IReferenceExcludable excludable, ICustomerService customerService)
         {
+            _excludable = Has.NotNull(excludable);
             _customerService = Has.NotNull(customerService);
             _unitOfWork = Has.NotNull(unitOfWork);
         }
@@ -29,7 +32,12 @@ namespace SmileBoy.Client.Core.Managers
         /// <returns></returns>
         public async Task DeleteAsync(Guid id)
         {
-            //soon
+            var entity = await _unitOfWork.Customers.GetByIdAsync(id);
+
+            if (entity == null)
+                throw new InvalidOperationException();
+
+            await _excludable.Exclude(o => o.DeleteReferencesCustomer(), entity);
             await _customerService.DeleteAsync(id);
         }
 

@@ -8,5 +8,6 @@ namespace SmileBoy.Client.Core.IContract.IData
     {
         IRepository<Customer, Guid> Customers { get; }
         IRepository<Product, Guid> Products { get; }
+        IRepository<Order, Guid> Orders { get; }
     }
 }

@@ -9,9 +9,12 @@ namespace SmileBoy.Client.Core.Dto
     {
         public Guid Id { get; set; }
 
+        public string Number { get; set; }
+
         public decimal Amount { get; set; }
 
         public DateTime DeliveryDate { get; set; }
+
 
         public Guid CustomerId { get; set; }
 

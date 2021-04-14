@@ -2,6 +2,7 @@
 using SmileBoy.Client.BL.Services;
 using SmileBoy.Client.Core.IContract;
 using SmileBoy.Client.Core.IContract.IManagers;
+using SmileBoy.Client.Core.IContract.IProviders;
 using SmileBoy.Client.Core.IContract.IService;
 using SmileBoy.Client.Core.Managers;
 using SmileBoy.Client.Core.Providers;
@@ -67,6 +68,10 @@ namespace SmileBoyClient
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IDialogService, DialogService>();
+
+            //Providers
+            services.AddScoped<IOrderProvider, OrderProvider>()
+                .AddTransient<IReferenceExcludable>(p => p.GetService <IOrderProvider>() as OrderProvider);
 
             //Managers
             services.AddScoped<IProductManager, ProductManager>();

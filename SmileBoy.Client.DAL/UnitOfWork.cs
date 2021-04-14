@@ -24,7 +24,7 @@ namespace SmileBoy.Client.DAL
         private IRepository<Customer, Guid> _customers;
         public IRepository<Customer, Guid> Customers => _customers ??= new CustomerRepository(_database);
 
-        private IRepository<Orders, Guid> _orders;
-        public IRepository<Orders, Guid> Orders => _orders ??= new OrderRepository(_database);
+        private IRepository<Order, Guid> _orders;
+        public IRepository<Order, Guid> Orders => _orders ??= new OrderRepository(_database);
     }
 }

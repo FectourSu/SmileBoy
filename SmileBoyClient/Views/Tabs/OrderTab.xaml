@@ -3,14 +3,242 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:SmileBoyClient.Views.Tabs"
+      xmlns:local="clr-namespace:SmileBoyClient.Views.Tabs" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:local1="clr-namespace:SmileBoyClient.Views.Controls"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="550" d:DesignWidth="800"
       Title="OrderTab"
       DataContext="{Binding OrderTab, Source={StaticResource ViewModelLocator}}">
+
+
+
     <Grid>
-        <TextBlock Text="Order"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+        <Border Background="#F5F3FB" Margin="60,60,60,10" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition MinHeight="360"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <materialDesign:TransitioningContent OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.15}">
+                    <materialDesign:TransitioningContent.OpeningEffects>
+                        <materialDesign:TransitionEffect Kind="SlideInFromLeft" />
+                    </materialDesign:TransitioningContent.OpeningEffects>
+
+                    <TextBlock Text="ORDERS"
+                               FontSize="18"
+                               FontFamily="{StaticResource MontserratBold}"
+                               Margin="25,35,0,10"
+                               Foreground="#525252"
+                               HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+                </materialDesign:TransitioningContent>
+
+                <StackPanel Orientation="Horizontal" Margin="0 5 0 0"
+                            HorizontalAlignment="Right" Grid.Column="1">
+
+                    <Button Command="{Binding DeleteManyCommand}"
+                            Style="{DynamicResource MaterialDesignToolButton}"
+                            Margin="0 0 5 0">
+                        <materialDesign:PackIcon Kind="Trolley" />
+                    </Button>
+
+                    <Button Command="{Binding AddCommand}"
+                            Style="{DynamicResource MaterialDesignToolButton}"
+                            Margin="0 0 5 0">
+                        <materialDesign:PackIcon Kind="TrolleyPlus"/>
+                    </Button>
+
+                    <Button Style="{DynamicResource MaterialDesignToolButton}"
+                            Command="{Binding RefreshCommand}">
+                        <materialDesign:PackIcon Kind="Refresh"/>
+                    </Button>
+
+                    <materialDesign:ColorZone Background="White"
+                                              VerticalAlignment="Center"
+                                              BorderThickness="0"
+                                              BorderBrush="#C4C4C4"
+                                              Padding="8 0"
+                                              FontSize="12"
+                                              CornerRadius="8"
+                                              Height="40"
+                                              FontFamily="{StaticResource RobotoLight}"
+                                              Margin="16 0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button Style="{DynamicResource MaterialDesignToolButton}"
+                                    Command="{Binding SearchCommand}">
+                                <materialDesign:PackIcon Kind="Magnify"
+                                                         Opacity=".56" />
+                            </Button>
+                            <TextBox 
+                                     Grid.Column="1"
+                                     Text="{Binding Filter}"
+                                     Margin="8 0 0 0"
+                                     materialDesign:HintAssist.Hint="Search"
+                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                     BorderThickness="0"
+                                     
+                                     MinWidth="200"
+                                     VerticalAlignment="Center">
+                            </TextBox>
+                        </Grid>
+                    </materialDesign:ColorZone>
+                </StackPanel>
+                <materialDesign:TransitioningContent Grid.Row="1" Grid.ColumnSpan="2" OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:1.15}">
+                    <materialDesign:TransitioningContent.OpeningEffects>
+                        <materialDesign:TransitionEffect Kind="SlideInFromBottom" />
+                    </materialDesign:TransitioningContent.OpeningEffects>
+                    <StackPanel Grid.Row="1" Margin="5 0">
+                        <ItemsControl  HorizontalContentAlignment="Center"
+                          Name="itemControl"
+                          ItemsSource="{Binding Items}"
+                          Padding="0 10 0 0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Height="70"
+                                Style="{StaticResource HoverBorder}"
+                                Margin="7"
+                                 >
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="40"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="35"/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <materialDesign:Chip Command="{Binding DataContext.UpdateCommand, ElementName=itemControl}"
+                                              Grid.Column="1"
+                                              Margin="-14 0 0 0"
+                                              CommandParameter="{Binding DataContext, RelativeSource={RelativeSource Self}}"
+                                              IconBackground="Transparent"
+                                              Background="Transparent">
+                                                    <materialDesign:Chip.Content>
+                                                        <StackPanel Margin="15 0 0 0"
+                                                        VerticalAlignment="Center">
+
+                                                            <TextBlock Text="{Binding StringFormat=Order №{0}, Path = Number}"
+                                                           FontSize="14"
+                                                            FontFamily="{StaticResource RobotoMedium}"
+                                                           Foreground="#2d2d2d"
+                                                           FontWeight="Medium"/>
+
+                                                            <TextBlock Text="{Binding Customer.Name, FallbackValue='Customer not found' }"
+                                                           Foreground="#959DA1"
+                                                           FontFamily="{StaticResource RobotoLight}"
+                                                           FontWeight="Regular"/>
+                                                        </StackPanel>
+                                                    </materialDesign:Chip.Content>
+                                                    <materialDesign:Chip.Icon>
+                                                        <Border Background="#E85275"
+                                                    CornerRadius="7"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"
+                                                    Width="80"
+                                                    Height="80">
+                                                            <materialDesign:PackIcon Kind="ContentPaste"
+                                                            Width="18"
+                                                              Height="18"
+                                                              Foreground="White"
+                                                              VerticalAlignment="Center"
+                                                              HorizontalAlignment="Center"/>
+                                                        </Border>
+                                                    </materialDesign:Chip.Icon>
+                                                </materialDesign:Chip>
+                                            </Grid>
+
+                                            <Grid Grid.Column="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="150"/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackPanel Margin="-20 0 0 0" VerticalAlignment="Center"
+                                                HorizontalAlignment="Center">
+                                                    <TextBlock Text="Delivery Date" FontFamily="{StaticResource RobotoLight}"
+                                                   Foreground="#959DA1"
+                                                   FontWeight="Regular"/>
+                                                    <TextBlock Text="{Binding DeliveryDate}"
+                                                   FontSize="12"
+                                                   Foreground="#2d2d2d"  
+                                                   FontFamily="{StaticResource RobotoRegular}"
+                                                   FontWeight="Medium"/>
+                                                </StackPanel>
+
+                                                <StackPanel VerticalAlignment="Center" Grid.Column="1"
+                                                HorizontalAlignment="Center">
+                                                    <TextBlock Text="Products" FontFamily="{StaticResource RobotoLight}"
+                                                   Foreground="#959DA1"
+                                                   FontWeight="Regular"/>
+                                                    <TextBlock Text="{Binding Products.Count}"
+                                                   FontSize="12"  FontFamily="{StaticResource RobotoRegular}"
+                                                   Foreground="#2d2d2d"
+                                                   FontWeight="Medium"/>
+                                                </StackPanel>
+
+                                                <StackPanel Grid.Column="2"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center">
+                                                    <TextBlock Text="Amount"
+                                                   Foreground="#959DA1"
+                                                   FontFamily="{StaticResource RobotoLight}"
+                                                   FontWeight="Regular"/>
+                                                    <TextBlock Text="{Binding StringFormat = {}{0}$, Path=Amount}"
+                                                   FontSize="12"
+                                                   Foreground="#2d2d2d"
+                                                   FontFamily="{StaticResource RobotoRegular}"
+                                                   FontWeight="Medium"/>
+                                                </StackPanel>
+                                            </Grid>
+
+                                            <materialDesign:PopupBox Grid.Column="4"
+                                              PlacementMode="BottomAndAlignRightEdges"
+                                              StaysOpen="False">
+                                                <materialDesign:PopupBox.ToggleContent>
+                                                    <materialDesign:PackIcon Kind="DotsHorizontal" />
+                                                </materialDesign:PopupBox.ToggleContent>
+                                                <StackPanel Width="150">
+                                                    <Button FontWeight="Regular"
+                                                Command="{Binding DataContext.UpdateCommand, ElementName=itemControl}"
+                                                CommandParameter="{Binding DataContext, RelativeSource={RelativeSource Self}}">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="Edit"/>
+                                                        </StackPanel>
+                                                    </Button>
+                                                    <Button FontWeight="Regular"
+                                                Command="{Binding DataContext.DeleteCommand, ElementName=itemControl}"
+                                                CommandParameter="{Binding Id}">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="Delete"/>
+                                                        </StackPanel>
+                                                    </Button>
+                                                </StackPanel>
+                                            </materialDesign:PopupBox>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </materialDesign:TransitioningContent>
+                <StackPanel Grid.Row="2" Margin="25,25,25,0"
+                            Orientation="Horizontal" HorizontalAlignment="Right" Grid.ColumnSpan="2">
+                    <local1:PaginationControl DataContext="{Binding Pagination}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

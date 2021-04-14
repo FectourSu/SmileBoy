@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SmileBoy.Client.Entities.Entities
 {
-    public class Orders : EntityBase<Guid>, IParticipantsReferences, IReferenceDeletable
+    public class Order : EntityBase<Guid>, IParticipantsReferences, IReferenceDeletable
     {
         public string Number { get; set; }
 

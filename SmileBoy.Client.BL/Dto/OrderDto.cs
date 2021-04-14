@@ -1,4 +1,5 @@
-﻿using SmileBoyClient.Core.Entites;
+﻿using SmileBoy.Client.Core.Attributes;
+using SmileBoyClient.Core.Entites;
 using SmileBoyClient.Core.IContract;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,37 @@ namespace SmileBoy.Client.Core.Dto
 
         public decimal Amount { get; set; }
 
-        public string Number { get; set; }
+        private string? _number;
 
-        public DateTime DeliveryDate { get; set; }
+        public string Number
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_number))
+                    _number = GetNumber();
 
-        public Guid CustomerId { get; set; }
+                return _number;
+            }
+            set
+            {
+                _number = value;
+            }
+        }
+        private DateTime _datetime;
+        public DateTime DeliveryDate
+        {
+            get
+            {
+                if (_datetime == default)
+                    _datetime = DateTime.Now.AddDays(5); // order date
+
+                return _datetime;
+            }
+            set
+            {
+                _datetime = value;
+            }
+        }
 
         public CustomerDto Customer { get; set; }
 
@@ -24,14 +51,18 @@ namespace SmileBoy.Client.Core.Dto
 
         public bool Delivered => GetProgress();
 
+        //generate random product code
         private bool GetProgress()
         {
-            DeliveryDate = DateTime.Now.AddDays(5);
-
             if (DateTime.Now.Day == DeliveryDate.Day)
                 return true;
             else
                 return false;
         }
+
+        //generate order code
+        private string GetNumber() =>
+            (char)new Random().Next('A', 'Z' + 1)
+            + "-" + string.Join("", Enumerable.Range(0, 8).Select(i => new Random().Next(10)));
     }
 }

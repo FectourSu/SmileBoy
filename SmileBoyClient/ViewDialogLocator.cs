@@ -19,6 +19,9 @@ namespace SmileBoyClient
                 AddDialogViewModel<CustomerDto> => new AddDialog(),
                 UpdateDialogViewModel<CustomerDto> => new UpdateDialog(),
 
+                AddDialogViewModel<OrderDto> => new AddDialog(),
+                OrdersDialogViewModel => new OrdersDialog(),
+
                 _ => throw new NotImplementedException(),
             };
     }

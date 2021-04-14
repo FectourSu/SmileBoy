@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Interface Name="SmileBoyClient.Core.IContract.IService.IProductService" Collapsed="true">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IContract\IService\IProductService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SmileBoyClient.Core.IContract.IService.IOperationBase&lt;TModel, TKey&gt;" Collapsed="true">
+    <Position X="4.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAgAAgAAAAAAIIA=</HashCode>
+      <FileName>IContract\IOperationBase.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SmileBoy.Client.Core.IContract.IService.ICustomerService" Collapsed="true">
+    <Position X="1" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IContract\IService\ICustomerService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SmileBoy.Client.Core.IContract.IManagers.ICustomerManager" Collapsed="true">
+    <Position X="3.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IContract\IManagers\ICustomerManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SmileBoy.Client.Core.IContract.IProductManager" Collapsed="true">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IContract\IManagers\IProductManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SmileBoyClient.Core.IContract.IChangeable&lt;T&gt;" Collapsed="true">
+    <Position X="4.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IContract\IChangeable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SmileBoyClient.Core.IContract.IClearable" Collapsed="true">
+    <Position X="4.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>IContract\IChangeable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SmileBoyClient.Core.IContract.ITokenStorage" Collapsed="true">
+    <Position X="4.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>IContract\ITokenStorage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SmileBoyClient.Core.IContract.IReaderTokenStorage" Collapsed="true">
+    <Position X="1.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IContract\ITokenStorage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SmileBoyClient.Core.IContract.IWriterTokenStorage" Collapsed="true">
+    <Position X="6.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IContract\ITokenStorage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

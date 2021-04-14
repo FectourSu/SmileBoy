@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SmileBoy.Client.Entities.Entities
 {
-    public class Customer : EntityBase<Guid>
+    public class Customer : EntityBase<Guid>, IOrdersReference
     {
         public string Name { get; set; }
 
@@ -16,5 +16,7 @@ namespace SmileBoy.Client.Entities.Entities
         public string Address { get; set; }
 
         public string Img { get; set; }
+
+        public ICollection<Guid> Orders { get; set; } = new List<Guid>();
     }
 }
