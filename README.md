@@ -8,15 +8,14 @@
     * [x] Add authorization using the Oauth 2.0 approach and a JWT Bearer web token
 * [x] Setting up adding an account
 * [x]  Creating entities(classes) and configuring entities
-    * [x] Products
-    * [ ] Order
+    * [x] Order
     * [x] Customer
 * [x] Creating a MongoDB database and connecting to it
 * [x] Creating ViewModels for entities and configuring mapping (Automapper)
 * [x] Add XUnit tests
 * [x] Create Identity Server
-* [ ] Adding modal windows for each entity
-* [ ] Add tables on the view
+* [x] Adding modal windows for each entity
+* [x] Add tables on the view
 * [x] Add pagination 
 * [x] Adding validation for fields on the view
 * [x] Add the resulting charts (LiveCharts)
