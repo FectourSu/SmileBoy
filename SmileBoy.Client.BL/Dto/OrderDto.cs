@@ -29,19 +29,37 @@ namespace SmileBoy.Client.Core.Dto
                 _number = value;
             }
         }
-        private DateTime _datetime;
+
+
+
+        //trash code = bug fixed
+        private DateTime _deliveryDate;
+        private DateTime _olddate;
+
+        public DateTime OldDate => _olddate;
+
+        public bool checker = false;
         public DateTime DeliveryDate
         {
             get
             {
-                if (_datetime == default)
-                    _datetime = DateTime.Now.AddDays(5); // order date
+                if (_deliveryDate == default)
+                    _deliveryDate = DateTime.Now.AddDays(5); // order date
 
-                return _datetime;
+                
+                return _deliveryDate;
             }
             set
             {
-                _datetime = value;
+                _olddate = _deliveryDate;
+
+                if (_olddate == default)
+                    _olddate = value;
+
+                _deliveryDate = value;
+
+                if (_olddate != _deliveryDate)
+                    checker = true;
             }
         }
 

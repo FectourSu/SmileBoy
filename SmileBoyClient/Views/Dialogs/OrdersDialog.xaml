@@ -95,7 +95,8 @@
                         <TextBlock FontFamily="{StaticResource MontserratBold}" 
                                Foreground="#E85275"
                                HorizontalAlignment="Center" Padding="10"
-                               Text="3131.23$ " FontSize="20"></TextBlock>
+                               Text="{Binding StringFormat={}{0}$, Path=Model.Amount}" 
+                                   FontSize="20"></TextBlock>
                     </StackPanel>
                 <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center"
