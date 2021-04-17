@@ -65,6 +65,8 @@ namespace SmileBoyClient.ViewModels.Dialogs
             var selectProducts = Products.Where(p => p.Check).Select(p => p.Model);
             Model.Products = selectProducts.ToList();
 
+            Model.Amount = 0;
+
             //warning - trash code
             if (Model.Products.Count() == 0)
                 Model.Amount = 0;

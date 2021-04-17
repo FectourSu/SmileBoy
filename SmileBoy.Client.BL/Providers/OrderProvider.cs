@@ -34,7 +34,6 @@ namespace SmileBoy.Client.Core.Providers
             _mapper = Has.NotNull(mapper);
         }
 
-
         public async Task<PaginationResult<OrderDto>> GetAllAsync(int page, int pageSize, string filter = null)
         {
             var entites = string.IsNullOrEmpty(filter) ? _unitOfWork.Orders.GetAll() : await _unitOfWork.Orders.SearchAsync(filter);
