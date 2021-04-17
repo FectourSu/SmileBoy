@@ -29,10 +29,10 @@ namespace SmileBoy.Client.Core.Managers
         public async Task DeleteAsync(Guid id)
         {
             var entity = await _unitOfWork.Products.GetByIdAsync(id);
-
+            
             if (entity == null)
                 throw new InvalidOperationException();
-
+            
             await _excludable.Exclude(o => o.DeleteReferencesProduct(id), entity);
             await _productService.DeleteAsync(id); 
         }

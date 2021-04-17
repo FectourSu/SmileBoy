@@ -1,6 +1,5 @@
 ﻿using SmileBoy.Client.Core.Dto;
-using SmileBoy.Client.Core.IContract.IService;
-using SmileBoyClient.Core.IContract.IService;
+using SmileBoy.Client.Core.IContract.IManagers;
 using SmileBoyClient.Dialogs;
 using SmileBoyClient.ViewModels.Abstracts;
 
@@ -8,8 +7,8 @@ namespace SmileBoyClient.ViewModels
 {
     class CustomerViewModel : CheckOperationViewModel<CustomerDto>
     {
-        public CustomerViewModel(ICustomerService service, IDialogService dialogService)
-           : base(service, dialogService)
+        public CustomerViewModel(ICustomerManager manager, IDialogService dialogService)
+           : base(manager, dialogService)
         {
             PageSize = 6;
             Pagination = new PaginationViewModel(ReceiveData, PageSize);

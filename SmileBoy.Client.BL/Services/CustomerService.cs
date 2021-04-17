@@ -24,10 +24,7 @@ namespace SmileBoy.Client.Core.Services
             _mapper = Has.NotNull(mapper);
         }
 
-        public async Task DeleteAsync(Guid id)
-        {
-            await _repository.DeleteAsync(id);
-        }
+        public async Task DeleteAsync(Guid id) => await _repository.DeleteAsync(id);
 
         public async Task<PaginationResult<CustomerDto>> GetAll(int page, int pageSize, string filter = null)
         {

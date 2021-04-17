@@ -28,11 +28,7 @@ namespace SmileBoy.Client.BL.Services
             _mapper = Has.NotNull(mapper);
         }
 
-        public async Task DeleteAsync(Guid id)
-        {
-            await _repository.DeleteAsync(id);
-        }
-
+      
         /// <summary>
         /// Will give records, dividing them into pages and filtering them if necessary
         /// </summary>
@@ -79,5 +75,7 @@ namespace SmileBoy.Client.BL.Services
         {
             return _mapper.Map<ProductDto>(await _repository.GetByIdAsync(id));
         }
+
+        public async Task DeleteAsync(Guid id) => await _repository.DeleteAsync(id);
     }
 }

@@ -65,28 +65,17 @@ namespace SmileBoyClient.ViewModels.Dialogs
             var selectProducts = Products.Where(p => p.Check).Select(p => p.Model);
             Model.Products = selectProducts.ToList();
 
-            Model.Amount = 0;
+            //warning - trash code
+            if (Model.Products.Count() == 0)
+                Model.Amount = 0;
 
             foreach (var item in Model.Products)
                 Model.Amount = Products.Where(s => s.Check).Any()
                     ? Model.Amount + item.CurrentPrice
                     : Model.Amount - item.CurrentPrice;
+            
 
             DialogHost.CloseDialogCommand.Execute(Model, null);
         }
-
-        //public static T GetPrivateProperty<T>(object obj, string name)
-        //{
-        //    BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
-        //    var field = typeof(T).GetProperty(name, flags);
-        //    var objType = obj.GetType();
-        //    while (objType != null && field == null)
-        //    {
-        //        field = objType.GetProperty(name, flags);
-        //        objType = objType.BaseType;
-        //    }
-
-        //    return (T)field.GetValue(obj, null);
-        //}
     }
 }

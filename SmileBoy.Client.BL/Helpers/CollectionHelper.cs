@@ -18,5 +18,7 @@ namespace SmileBoy.Client.Core.Helpers
 
         public static void TryAdd<TModel>(this ICollection<TModel> source, TModel model)
             { if (!source.Contains(model)) source.Add(model); }
+        public static bool IsEmpty<T>(this IEnumerable<T> source) => !source.Any();
+
     }
 }

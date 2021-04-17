@@ -7,7 +7,6 @@ using SmileBoy.Client.Core.IContract.IService;
 using SmileBoy.Client.Core.Managers;
 using SmileBoy.Client.Core.Providers;
 using SmileBoy.Client.Core.Services;
-using SmileBoy.Client.Entities.Entities;
 using SmileBoyClient.Core;
 using SmileBoyClient.Core.IContract;
 using SmileBoyClient.Core.IContract.IProviders;
@@ -24,7 +23,7 @@ namespace SmileBoyClient
 {
     class ViewModelLocator
     {
-        public static IServiceProvider _provider { get; private set; }
+        public static IServiceProvider Provider { get; private set; }
 
         public static void Initialize()
         {
@@ -32,7 +31,7 @@ namespace SmileBoyClient
 
             ConfigureService(services);
 
-            _provider = services.BuildServiceProvider();
+            Provider = services.BuildServiceProvider();
 
         }
 
@@ -65,13 +64,13 @@ namespace SmileBoyClient
                 .AddTransient<IReaderTokenStorage>(p => p.GetService<ITokenStorage>());
 
             //Services
-            services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IDialogService, DialogService>();
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IProductService, ProductService>();
 
             //Providers
             services.AddScoped<IOrderProvider, OrderProvider>()
-                .AddTransient<IReferenceExcludable>(p => p.GetService <IOrderProvider>() as OrderProvider);
+                .AddTransient<IReferenceExcludable>(p => p.GetService<IOrderProvider>() as OrderProvider);
 
             //Managers
             services.AddScoped<IProductManager, ProductManager>();
@@ -82,27 +81,27 @@ namespace SmileBoyClient
         }
 
         public MainWindowViewModel MainWindow =>
-            _provider.GetRequiredService<MainWindowViewModel>();
+            Provider.GetRequiredService<MainWindowViewModel>();
 
         public MainViewModel MainPage =>
-            _provider.GetRequiredService<MainViewModel>();
+            Provider.GetRequiredService<MainViewModel>();
 
         public LoginViewModel LoginPage =>
-            _provider.GetRequiredService<LoginViewModel>();
+            Provider.GetRequiredService<LoginViewModel>();
 
         public ProductViewModel ProductTab =>
-            _provider.GetRequiredService<ProductViewModel>();
+            Provider.GetRequiredService<ProductViewModel>();
 
         public OrderViewModel OrderTab =>
-            _provider.GetRequiredService<OrderViewModel>();
+            Provider.GetRequiredService<OrderViewModel>();
         public CustomerViewModel CustomerTab =>
-            _provider.GetRequiredService<CustomerViewModel>();
+            Provider.GetRequiredService<CustomerViewModel>();
 
         public OptionViewModel SettingTab =>
-            _provider.GetRequiredService<OptionViewModel>();
+            Provider.GetRequiredService<OptionViewModel>();
 
         public HomeViewModel HomeTab =>
-            _provider.GetRequiredService<HomeViewModel>();
+            Provider.GetRequiredService<HomeViewModel>();
 
 
     }

@@ -1,20 +1,15 @@
-﻿using SmileBoyClient.Command;
+﻿using SmileBoy.Client.Core.IContract;
 using SmileBoyClient.Core.Entites;
-using SmileBoyClient.Core.IContract.IService;
 using SmileBoyClient.Dialogs;
-using SmileBoyClient.Helpers;
 using SmileBoyClient.ViewModels.Abstracts;
-using System;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows.Input;
 
 namespace SmileBoyClient.ViewModels
 {
     public class ProductViewModel : CheckOperationViewModel<ProductDto>
     {
-        public ProductViewModel(IProductService service, IDialogService dialogService)
-            : base(service, dialogService)
+
+        public ProductViewModel(IProductManager manager, IDialogService dialogService)
+            : base(manager, dialogService)
         {
             PageSize = 6;
             Pagination = new PaginationViewModel(ReceiveData, PageSize);

@@ -102,6 +102,5 @@ namespace SmileBoyClient.ViewModels.Abstracts
         }
 
         protected abstract void ReceiveData(int index, int pageSize);
-
     }
 }

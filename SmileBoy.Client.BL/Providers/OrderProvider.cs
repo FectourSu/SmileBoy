@@ -34,39 +34,6 @@ namespace SmileBoy.Client.Core.Providers
             _mapper = Has.NotNull(mapper);
         }
 
-        /// <summary>
-        /// Deleted installed links in Orders
-        /// </summary>
-        /// <param name="referencesAction"></param>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public async Task Exclude(Action<IReferenceDeletable> referencesAction, IOrdersReference model)
-        {
-            Has.NotNull(model);
-
-            foreach (var id in model.Orders)
-            {
-                var orderEntity = await _unitOfWork.Orders.GetByIdAsync(id);
-
-                if (orderEntity == null)
-                    throw new InvalidOperationException($"Missing id specified: {id}");
-
-                referencesAction?.Invoke(orderEntity);
-                await _unitOfWork.Orders.UpdateAsync(id, orderEntity);
-            }
-        }
-
-        public async Task DeleteAsync(Guid id)
-        {
-            var entity = await _unitOfWork.Orders.GetByIdAsync(id);
-
-            if (entity == null)
-                throw new InvalidOperationException($"Missing id specified: {id}");
-
-            await _unitOfWork.SetAllReferences(entity, (@ref, id) => @ref.Orders.Remove(id));
-            await _unitOfWork.Orders.DeleteAsync(id);
-        }
-
 
         public async Task<PaginationResult<OrderDto>> GetAllAsync(int page, int pageSize, string filter = null)
         {
@@ -116,12 +83,44 @@ namespace SmileBoy.Client.Core.Providers
 
             var entity = await _unitOfWork.Orders.GetByIdAsync(model.Id);
 
-
             await _unitOfWork.SetAllReferences(DeletedOrderReference.GetInstance(entity, model));
-            
+
+
             //Adding new links received from the UI
             await _unitOfWork.SetAllReferences(InsertOrderReferences.GetInstance(entity, model));
             await _unitOfWork.Orders.UpdateAsync(id, _mapper.Map(model, entity));
+        }
+        public async Task DeleteAsync(Guid id)
+        {
+            var entity = await _unitOfWork.Orders.GetByIdAsync(id);
+
+            if (entity == null)
+                throw new InvalidOperationException($"Missing id specified: {id}");
+
+            await _unitOfWork.SetAllReferences(entity, (@ref, id) => @ref.Orders.Remove(id));
+            await _unitOfWork.Orders.DeleteAsync(id);
+        }
+
+        /// <summary>
+        /// Deleted installed links in Orders
+        /// </summary>
+        /// <param name="referencesAction"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task Exclude(Action<IReferenceDeletable> referencesAction, IOrdersReference model)
+        {
+            Has.NotNull(model);
+
+            foreach (var id in model.Orders)
+            {
+                var orderEntity = await _unitOfWork.Orders.GetByIdAsync(id);
+
+                if (orderEntity == null)
+                    throw new InvalidOperationException($"Missing id specified: {id}");
+
+                referencesAction?.Invoke(orderEntity);
+                await _unitOfWork.Orders.UpdateAsync(id, orderEntity);
+            }
         }
     }
 }
